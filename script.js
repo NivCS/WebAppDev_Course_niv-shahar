@@ -417,7 +417,7 @@ function updateNavigation() {
     currentStep === 0;
 
   nextButton.disabled =
-    currentStep === steps.length - 1;
+    !completedSteps.has(currentStep);
 }
 
 
@@ -753,14 +753,14 @@ prevButton.addEventListener(
 
 
 /* Next stage */
-
 nextButton.addEventListener(
   "click",
   () => {
 
     if (
       isTransitioning ||
-      currentStep === steps.length - 1
+      currentStep === steps.length - 1 ||
+      !completedSteps.has(currentStep)
     ) {
       return;
     }
