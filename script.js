@@ -1,8 +1,8 @@
 const steps = [
 
   {
-    title: "הנקניקייה מחכה!",
-    instruction: "שים את הנקניקייה בצד ימין של הדוכן.",
+    title: "מתחילים פשוט",
+    instruction: "העבר את הנקניקייה לצד ימין של הדוכן.",
     items: 1,
 
     expected: {
@@ -13,24 +13,22 @@ const steps = [
     }
   },
 
-
   {
-    title: "מגיעים למרכז",
-    instruction: "מרכז את הנקניקייה אופקית באמצע הדוכן.",
+    title: "לגובה הנכון",
+    instruction: "העבר את הנקניקייה לתחתית הדוכן.",
     items: 1,
 
     expected: {
       flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "flex-end",
       flexWrap: "nowrap"
     }
   },
-
 
   {
     title: "פינה מושלמת",
-    instruction: "שים את הנקניקייה בפינה הימנית התחתונה.",
+    instruction: "מקם את הנקניקייה בפינה הימנית התחתונה.",
     items: 1,
 
     expected: {
@@ -41,52 +39,48 @@ const steps = [
     }
   },
 
+ {
+  title: "הנקניקיות מסתדרות מחדש",
+  instruction: "הפוך את כיוון הסידור לעמודה. הנקניקיות צריכות להסתדר אחת מתחת לשנייה, במרכז הדוכן.",
+  items: 2,
 
-  {
-    title: "משנים כיוון!",
-    instruction: "השתמש ב-flex-direction: column כדי להעביר את הנקניקייה לתחתית.",
-    items: 1,
-
-    expected: {
-      flexDirection: "column",
-      justifyContent: "flex-end",
-      alignItems: "flex-start",
-      flexWrap: "nowrap"
-    }
+  expected: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexWrap: "nowrap"
+  }
   },
 
-
   {
-    title: "למטה ובצד",
-    instruction: "השתמש בכיוון עמודה כדי למקם את הנקניקייה בתחתית בצד ימין.",
-    items: 1,
-
-    expected: {
-      flexDirection: "column",
-      justifyContent: "flex-end",
-      alignItems: "flex-end",
-      flexWrap: "nowrap"
-    }
-  },
-
-
-  {
-    title: "הזמנה זוגית",
-    instruction: "יש שתי נקניקיות ושתי לחמניות. סדר אותן במרכז הדוכן, אחת ליד השנייה.",
+    title: "שתי נקניקיות",
+    instruction: "סדר שתי נקניקיות אחת מעל השנייה, במרכז הדוכן.",
     items: 2,
 
     expected: {
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "nowrap"
     }
   },
 
+  {
+    title: "מרווח שווה",
+    instruction: "יש שלוש נקניקיות. סדר אותן בשורה עם מרווח שווה ביניהן.",
+    items: 3,
+
+    expected: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "nowrap"
+    }
+  },
 
   {
     title: "הזמנה גדולה",
-    instruction: "יש שלוש נקניקיות ושלוש לחמניות. סדר אותן בשתי שורות בעזרת flex-wrap.",
+    instruction: "יש שלוש נקניקיות. סדר אותן בשתי שורות בעזרת flex-wrap.",
     items: 3,
 
     expected: {
@@ -94,13 +88,14 @@ const steps = [
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "wrap"
-    }
-  },
+    },
 
+    narrowBoard: true
+  },
 
   {
     title: "אתגר השף 🌭",
-    instruction: "שלוש נקניקיות ושלוש לחמניות. השתמש ב-column וב-flex-wrap כדי לסדר את כולן.",
+    instruction: "סדר שלוש נקניקיות בעמודות, במרכז, והשתמש ב-flex-wrap.",
     items: 3,
 
     expected: {
@@ -108,7 +103,9 @@ const steps = [
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "wrap"
-    }
+    },
+
+    narrowBoard: true
   }
 
 ];
@@ -116,15 +113,15 @@ const steps = [
 
 let currentStep = 0;
 
-let attempts = 0;
+let currentAttempts = 0;
+let totalAttempts = 0;
 
 let completedSteps = new Set();
 
 let isTransitioning = false;
 
 
-const arena =
-  document.getElementById("arena");
+const arena = document.getElementById("arena");
 
 const flexContainer =
   document.getElementById("flex-container");
@@ -204,54 +201,32 @@ const restartButton =
   document.getElementById("restart-button");
 
 
-totalSteps.textContent =
-  steps.length;
+totalSteps.textContent = steps.length;
 
 
 /* Create food item */
 
 function createFoodItem(type, isTarget) {
 
-  const item =
-    document.createElement("div");
-
+  const item = document.createElement("div");
 
   if (isTarget) {
-
     item.classList.add("target-bun");
-
   } else {
-
     item.classList.add("hotdog-item");
-
   }
 
-
-  const image =
-    document.createElement("img");
-
+  const image = document.createElement("img");
 
   if (type === "hotdog") {
-
-    image.src =
-      "images/hotdog.png";
-
-    image.alt =
-      "נקניקייה";
-
+    image.src = "images/hotdog.png";
+    image.alt = "נקניקייה";
   } else {
-
-    image.src =
-      "images/bread.png";
-
-    image.alt =
-      "לחמנייה";
-
+    image.src = "images/bread.png";
+    image.alt = "לחמנייה";
   }
 
-
   item.appendChild(image);
-
 
   return item;
 }
@@ -262,48 +237,67 @@ function createFoodItem(type, isTarget) {
 function buildStageItems() {
 
   flexContainer.innerHTML = "";
-
   targetContainer.innerHTML = "";
 
-
-  const count =
-    steps[currentStep].items;
-
+  const count = steps[currentStep].items;
 
   for (let i = 0; i < count; i++) {
 
     const playerItem =
-      createFoodItem(
-        "hotdog",
-        false
-      );
-
+      createFoodItem("hotdog", false);
 
     const targetItem =
-      createFoodItem(
-        "bread",
-        true
-      );
+      createFoodItem("bread", true);
+
+    flexContainer.appendChild(playerItem);
+    targetContainer.appendChild(targetItem);
+  }
+}
 
 
-    flexContainer.appendChild(
-      playerItem
-    );
+/* Configure the logical board */
 
+function configureBoard() {
 
-    targetContainer.appendChild(
-      targetItem
-    );
+  const step = steps[currentStep];
+
+  if (step.narrowBoard) {
+
+    flexContainer.style.width = "240px";
+    targetContainer.style.width = "240px";
+
+    flexContainer.style.left = "50%";
+    targetContainer.style.left = "50%";
+
+    flexContainer.style.right = "auto";
+    targetContainer.style.right = "auto";
+
+    flexContainer.style.transform =
+      "translateX(-50%)";
+
+    targetContainer.style.transform =
+      "translateX(-50%)";
+
+  } else {
+
+    flexContainer.style.width = "";
+    targetContainer.style.width = "";
+
+    flexContainer.style.left = "";
+    targetContainer.style.left = "";
+
+    flexContainer.style.right = "";
+    targetContainer.style.right = "";
+
+    flexContainer.style.transform = "";
+    targetContainer.style.transform = "";
   }
 }
 
 
 /* Apply Flexbox properties */
 
-function applyFlexProperties(
-  element,
-  values
-) {
+function applyFlexProperties(element, values) {
 
   element.style.flexDirection =
     values.flexDirection;
@@ -324,7 +318,6 @@ function applyFlexProperties(
 function getSelectedValues() {
 
   return {
-
     flexDirection:
       directionSelect.value,
 
@@ -336,7 +329,6 @@ function getSelectedValues() {
 
     flexWrap:
       wrapSelect.value
-
   };
 }
 
@@ -367,18 +359,13 @@ function applyPlayerCSS() {
 
 function resetControls() {
 
-  directionSelect.value =
-    "row";
+  directionSelect.value = "row";
 
-  justifySelect.value =
-    "flex-start";
+  justifySelect.value = "flex-start";
 
-  alignSelect.value =
-    "flex-start";
+  alignSelect.value = "flex-start";
 
-  wrapSelect.value =
-    "nowrap";
-
+  wrapSelect.value = "nowrap";
 
   applyPlayerCSS();
 }
@@ -389,7 +376,7 @@ function resetControls() {
 function updateAttempts() {
 
   attemptsElement.textContent =
-    attempts;
+    currentAttempts;
 }
 
 
@@ -400,7 +387,6 @@ function updateProgress() {
   const progress =
     ((currentStep + 1) / steps.length) * 100;
 
-
   progressFill.style.width =
     `${progress}%`;
 }
@@ -410,17 +396,13 @@ function updateProgress() {
 
 function updateStepInformation() {
 
-  const step =
-    steps[currentStep];
-
+  const step = steps[currentStep];
 
   stepNumber.textContent =
     currentStep + 1;
 
-
   stepTitle.textContent =
     step.title;
-
 
   stepInstruction.textContent =
     step.instruction;
@@ -434,7 +416,6 @@ function updateNavigation() {
   prevButton.disabled =
     currentStep === 0;
 
-
   nextButton.disabled =
     currentStep === steps.length - 1;
 }
@@ -446,41 +427,23 @@ function createDots() {
 
   stepDots.innerHTML = "";
 
+  steps.forEach((step, index) => {
 
-  steps.forEach(
-    (step, index) => {
+    const dot =
+      document.createElement("div");
 
-      const dot =
-        document.createElement("div");
+    dot.classList.add("dot");
 
-
-      dot.classList.add("dot");
-
-
-      if (
-        completedSteps.has(index)
-      ) {
-
-        dot.classList.add(
-          "completed"
-        );
-      }
-
-
-      if (
-        index === currentStep
-      ) {
-
-        dot.classList.add(
-          "current"
-        );
-      }
-
-
-      stepDots.appendChild(dot);
-
+    if (completedSteps.has(index)) {
+      dot.classList.add("completed");
     }
-  );
+
+    if (index === currentStep) {
+      dot.classList.add("current");
+    }
+
+    stepDots.appendChild(dot);
+  });
 }
 
 
@@ -490,20 +453,21 @@ function loadStep() {
 
   isTransitioning = false;
 
+  currentAttempts = 0;
 
   feedback.textContent = "";
 
   feedback.className =
     "feedback";
 
-
   arena.classList.remove(
     "correct",
     "wrong"
   );
 
-
   buildStageItems();
+
+  configureBoard();
 
   applyTargetCSS();
 
@@ -521,6 +485,32 @@ function loadStep() {
 }
 
 
+/* Check all four Flexbox values */
+
+function propertiesMatch() {
+
+  const selected =
+    getSelectedValues();
+
+  const expected =
+    steps[currentStep].expected;
+
+  return (
+    selected.flexDirection ===
+      expected.flexDirection &&
+
+    selected.justifyContent ===
+      expected.justifyContent &&
+
+    selected.alignItems ===
+      expected.alignItems &&
+
+    selected.flexWrap ===
+      expected.flexWrap
+  );
+}
+
+
 /* Check item positions */
 
 function positionsMatch() {
@@ -530,24 +520,19 @@ function positionsMatch() {
       ".hotdog-item"
     );
 
-
   const targetItems =
     targetContainer.querySelectorAll(
       ".target-bun"
     );
 
-
   if (
     playerItems.length !==
     targetItems.length
   ) {
-
     return false;
   }
 
-
   const tolerance = 8;
-
 
   for (
     let i = 0;
@@ -556,34 +541,26 @@ function positionsMatch() {
   ) {
 
     const playerRect =
-      playerItems[i]
-        .getBoundingClientRect();
-
+      playerItems[i].getBoundingClientRect();
 
     const targetRect =
-      targetItems[i]
-        .getBoundingClientRect();
-
+      targetItems[i].getBoundingClientRect();
 
     const playerCenterX =
       playerRect.left +
       playerRect.width / 2;
 
-
     const playerCenterY =
       playerRect.top +
       playerRect.height / 2;
-
 
     const targetCenterX =
       targetRect.left +
       targetRect.width / 2;
 
-
     const targetCenterY =
       targetRect.top +
       targetRect.height / 2;
-
 
     const distanceX =
       Math.abs(
@@ -591,23 +568,19 @@ function positionsMatch() {
         targetCenterX
       );
 
-
     const distanceY =
       Math.abs(
         playerCenterY -
         targetCenterY
       );
 
-
     if (
       distanceX > tolerance ||
       distanceY > tolerance
     ) {
-
       return false;
     }
   }
-
 
   return true;
 }
@@ -623,14 +596,9 @@ function showSuccessFeedback() {
   feedback.className =
     "feedback success";
 
+  arena.classList.remove("wrong");
 
-  arena.classList.remove(
-    "wrong"
-  );
-
-  arena.classList.add(
-    "correct"
-  );
+  arena.classList.add("correct");
 }
 
 
@@ -639,19 +607,14 @@ function showSuccessFeedback() {
 function showErrorFeedback() {
 
   feedback.textContent =
-    "✗ כמעט! נסה לשנות את הגדרות ה-Flexbox.";
+    "✗ כמעט! בדוק את הגדרות ה-Flexbox ונסה שוב.";
 
   feedback.className =
     "feedback error";
 
+  arena.classList.remove("correct");
 
-  arena.classList.remove(
-    "correct"
-  );
-
-  arena.classList.add(
-    "wrong"
-  );
+  arena.classList.add("wrong");
 }
 
 
@@ -663,34 +626,36 @@ function checkSolution() {
     return;
   }
 
-
-  attempts++;
+  currentAttempts++;
+  totalAttempts++;
 
   updateAttempts();
 
-
   applyPlayerCSS();
-
 
   requestAnimationFrame(() => {
 
-    if (!positionsMatch()) {
+    const correctProperties =
+      propertiesMatch();
+
+    const correctPositions =
+      positionsMatch();
+
+    if (
+      !correctProperties ||
+      !correctPositions
+    ) {
 
       showErrorFeedback();
 
       return;
     }
 
-
-    completedSteps.add(
-      currentStep
-    );
-
+    completedSteps.add(currentStep);
 
     showSuccessFeedback();
 
     createDots();
-
 
     isTransitioning = true;
 
@@ -707,30 +672,25 @@ function checkSolution() {
         successTitle.textContent =
           "הדוכן מוכן! 🏆";
 
-
         successMessage.textContent =
           `סיימת בהצלחה את כל ${steps.length} השלבים!`;
 
-
         finalAttempts.textContent =
-          attempts;
-
+          totalAttempts;
 
         successOverlay.classList.remove(
           "hidden"
         );
 
-
         isTransitioning = false;
 
       }, 1200);
-
 
       return;
     }
 
 
-    /* Regular stage */
+    /* Move to next stage */
 
     setTimeout(() => {
 
@@ -744,7 +704,7 @@ function checkSolution() {
 }
 
 
-/* Reset */
+/* Reset current stage */
 
 function resetCurrentStep() {
 
@@ -752,23 +712,19 @@ function resetCurrentStep() {
     return;
   }
 
-
-  attempts = 0;
+  currentAttempts = 0;
 
   updateAttempts();
-
 
   arena.classList.remove(
     "correct",
     "wrong"
   );
 
-
   feedback.textContent = "";
 
   feedback.className =
     "feedback";
-
 
   resetControls();
 
@@ -776,7 +732,7 @@ function resetCurrentStep() {
 }
 
 
-/* Previous */
+/* Previous stage */
 
 prevButton.addEventListener(
   "click",
@@ -786,20 +742,17 @@ prevButton.addEventListener(
       isTransitioning ||
       currentStep === 0
     ) {
-
       return;
     }
-
 
     currentStep--;
 
     loadStep();
-
   }
 );
 
 
-/* Next */
+/* Next stage */
 
 nextButton.addEventListener(
   "click",
@@ -807,18 +760,14 @@ nextButton.addEventListener(
 
     if (
       isTransitioning ||
-      currentStep ===
-      steps.length - 1
+      currentStep === steps.length - 1
     ) {
-
       return;
     }
-
 
     currentStep++;
 
     loadStep();
-
   }
 );
 
@@ -867,18 +816,17 @@ restartButton.addEventListener(
 
     currentStep = 0;
 
-    attempts = 0;
+    currentAttempts = 0;
+
+    totalAttempts = 0;
 
     completedSteps.clear();
-
 
     successOverlay.classList.add(
       "hidden"
     );
 
-
     loadStep();
-
   }
 );
 
