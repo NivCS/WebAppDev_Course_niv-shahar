@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌭 Hot Dog Flex</title>
+  <title>Hot Dog Flex</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -12,246 +11,296 @@
 
   <div class="app">
 
-```
-<!-- Header -->
-<header class="top-header">
-  <div class="brand">
-    <span class="brand-icon">🌭</span>
-    <div>
-      <h1>HOT DOG FLEX</h1>
-      <p>דוכן הנקניקיות של Flexbox</p>
-    </div>
-  </div>
+    <header class="top-header">
 
-  <div class="progress-area">
-    <div class="progress-info">
-      <span>התקדמות</span>
-      <strong>שלב <span id="step-num">1</span> מתוך 8</strong>
-    </div>
+      <div class="brand">
+        <div class="brand-icon">🌭</div>
 
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <!-- Order -->
-  <section class="order-card">
-    <div class="order-title">
-      <span class="order-number">ORDER</span>
-      <span>🧾 הזמנה חדשה</span>
-    </div>
-
-    <div class="order-content">
-      <div class="order-icon">🌭</div>
-
-      <div>
-        <h2 id="goal-title">הזמנה מספר 1</h2>
-        <p id="goal-text"></p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Game Board -->
-  <section class="game-card">
-
-    <div class="stall-sign">
-      <span>★</span>
-      HOT DOG
-      <span>★</span>
-    </div>
-
-    <div class="counter">
-
-      <div class="board-label">
-        <span>🍽️</span>
-        הרכבת ההזמנה
+        <div>
+          <h1>HOT DOG FLEX</h1>
+          <p>דוכן הנקניקיות של Flexbox</p>
+        </div>
       </div>
 
-      <div class="arena-wrapper" id="arena-wrapper">
-
-        <!-- Target -->
-        <div class="target-area" id="target-area">
-          <div class="target-label">היעד שלך</div>
-
-          <div class="flex-layer target-layer" id="flex-target">
-            <div class="target-bun">
-              <span>🥖</span>
-            </div>
-          </div>
+      <div class="progress-area">
+        <div class="progress-info">
+          <span>התקדמות</span>
+          <strong>
+            שלב <span id="step-num">1</span> מתוך 8
+          </strong>
         </div>
 
-        <!-- Player -->
-        <div class="player-area">
-          <div class="flex-layer player-layer" id="flex-container">
-            <div class="hotdog-item" data-item="hotdog">
-              <span class="hotdog-bun">🥖</span>
-              <span class="hotdog-sausage">🌭</span>
-            </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
 
-            <div class="extra-item hidden" data-item="extra">🥒</div>
-            <div class="extra-item hidden" data-item="extra">🧅</div>
-            <div class="extra-item hidden" data-item="extra">🍅</div>
-            <div class="extra-item hidden" data-item="extra">🧀</div>
-            <div class="extra-item hidden" data-item="extra">🥬</div>
-          </div>
+    </header>
+
+
+    <main>
+
+      <section class="order-card">
+
+        <div class="order-title">
+          <span class="order-number">ORDER</span>
+          <span>הזמנה חדשה</span>
         </div>
 
-        <div class="counter-front"></div>
-      </div>
+        <div class="order-content">
 
-    </div>
-  </section>
+          <div class="order-icon">
+            🌭
+          </div>
 
+          <div>
+            <h2 id="goal-title">הזמנה מספר 1</h2>
+            <p id="goal-text"></p>
+          </div>
 
-  <!-- Controls -->
-  <section class="controls-card">
+        </div>
 
-    <div class="controls-header">
-      <div>
-        <span class="small-label">FLEXBOX CONTROLS</span>
-        <h2>🛠️ הרכב את ההזמנה</h2>
-      </div>
-
-      <div class="attempts-box">
-        <span>ניסיונות</span>
-        <strong id="attempts">0</strong>
-      </div>
-    </div>
+      </section>
 
 
-    <div class="controls-grid">
+      <section class="game-card">
 
-      <div class="control">
-        <label for="sel-flex-direction">
-          <span>flex-direction</span>
-        </label>
+        <div class="stall-sign">
+          <span>★</span>
+          HOT DOG
+          <span>★</span>
+        </div>
 
-        <select id="sel-flex-direction">
-          <option value="row">row</option>
-          <option value="row-reverse">row-reverse</option>
-          <option value="column">column</option>
-          <option value="column-reverse">column-reverse</option>
-        </select>
-      </div>
+        <div class="counter">
 
+          <div class="board-label">
+            🍽️ הרכבת ההזמנה
+          </div>
 
-      <div class="control">
-        <label for="sel-justify-content">
-          <span>justify-content</span>
-        </label>
+          <div class="arena-wrapper" id="arena-wrapper">
 
-        <select id="sel-justify-content">
-          <option value="flex-start">flex-start</option>
-          <option value="flex-end">flex-end</option>
-          <option value="center">center</option>
-          <option value="space-between">space-between</option>
-          <option value="space-around">space-around</option>
-          <option value="space-evenly">space-evenly</option>
-        </select>
-      </div>
+            <!-- Target -->
+            <div class="target-layer" id="target-layer">
 
+              <div class="target-label">
+                היעד
+              </div>
 
-      <div class="control">
-        <label for="sel-align-items">
-          <span>align-items</span>
-        </label>
+              <div class="target-bun">
+                <img
+                  src="images/bread.jpeg"
+                  alt="לחמנייה"
+                />
+              </div>
 
-        <select id="sel-align-items">
-          <option value="flex-start">flex-start</option>
-          <option value="flex-end">flex-end</option>
-          <option value="center">center</option>
-          <option value="stretch">stretch</option>
-          <option value="baseline">baseline</option>
-        </select>
-      </div>
+            </div>
 
 
-      <div class="control">
-        <label for="sel-flex-wrap">
-          <span>flex-wrap</span>
-        </label>
+            <!-- Player Flex Container -->
+            <div
+              class="flex-layer"
+              id="flex-container"
+            >
 
-        <select id="sel-flex-wrap">
-          <option value="nowrap">nowrap</option>
-          <option value="wrap">wrap</option>
-          <option value="wrap-reverse">wrap-reverse</option>
-        </select>
-      </div>
+              <div class="hotdog-item">
+                <img
+                  src="images/hotdog.jpeg"
+                  alt="נקניקייה"
+                />
+              </div>
 
-    </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
 
 
-    <div class="actions">
-      <button class="check-button" id="check-btn">
-        <span>✓</span>
-        בדוק את ההזמנה
+      <section class="controls-card">
+
+        <div class="controls-header">
+
+          <div>
+            <span class="small-label">
+              FLEXBOX CONTROLS
+            </span>
+
+            <h2>🛠️ הרכב את ההזמנה</h2>
+          </div>
+
+          <div class="attempts-box">
+            <span>ניסיונות</span>
+            <strong id="attempts">0</strong>
+          </div>
+
+        </div>
+
+
+        <div class="controls-grid">
+
+          <div class="control">
+
+            <label for="sel-flex-direction">
+              flex-direction
+            </label>
+
+            <select id="sel-flex-direction">
+              <option value="row">row</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column">column</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+
+          </div>
+
+
+          <div class="control">
+
+            <label for="sel-justify-content">
+              justify-content
+            </label>
+
+            <select id="sel-justify-content">
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="center">center</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+
+          </div>
+
+
+          <div class="control">
+
+            <label for="sel-align-items">
+              align-items
+            </label>
+
+            <select id="sel-align-items">
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="center">center</option>
+              <option value="stretch">stretch</option>
+              <option value="baseline">baseline</option>
+            </select>
+
+          </div>
+
+
+          <div class="control">
+
+            <label for="sel-flex-wrap">
+              flex-wrap
+            </label>
+
+            <select id="sel-flex-wrap">
+              <option value="nowrap">nowrap</option>
+              <option value="wrap">wrap</option>
+              <option value="wrap-reverse">wrap-reverse</option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="check-button"
+            id="check-btn"
+          >
+            <span>✓</span>
+            בדוק את ההזמנה
+          </button>
+
+          <button
+            class="reset-button"
+            id="reset-btn"
+          >
+            ↺ איפוס
+          </button>
+
+        </div>
+
+
+        <div
+          class="feedback"
+          id="feedback"
+        ></div>
+
+      </section>
+
+    </main>
+
+
+    <footer>
+
+      <button
+        class="nav-button"
+        id="prev-btn"
+      >
+        → אחורה
       </button>
 
-      <button class="reset-button" id="reset-btn">
-        ↺ איפוס
+      <div
+        class="dots"
+        id="dots"
+      ></div>
+
+      <button
+        class="nav-button next"
+        id="next-btn"
+        disabled
+      >
+        קדימה ←
       </button>
+
+    </footer>
+
+  </div>
+
+
+  <div
+    class="overlay hidden"
+    id="success-overlay"
+  >
+
+    <div class="success-box">
+
+      <div class="success-icon">
+        🏆
+      </div>
+
+      <span class="success-label">
+        ORDER COMPLETE
+      </span>
+
+      <h2>
+        הדוכן סיים את כל ההזמנות!
+      </h2>
+
+      <p>
+        כל הכבוד! השלמת את כל שלבי משחק ה־Flexbox.
+      </p>
+
+      <div class="final-score">
+        <span>סה״כ ניסיונות</span>
+        <strong id="final-attempts">0</strong>
+      </div>
+
+      <button id="restart-btn">
+        🌭 התחל מחדש
+      </button>
+
     </div>
 
-
-    <div class="feedback" id="feedback"></div>
-
-  </section>
-
-</main>
-
-
-<!-- Navigation -->
-<footer>
-
-  <button class="nav-button" id="prev-btn">
-    → אחורה
-  </button>
-
-  <div class="dots" id="dots"></div>
-
-  <button class="nav-button next" id="next-btn" disabled>
-    קדימה ←
-  </button>
-
-</footer>
-```
-
   </div>
 
-  <!-- Success Overlay -->
-
-  <div class="overlay hidden" id="success-overlay">
-
-```
-<div class="success-box">
-
-  <div class="success-icon">🏆</div>
-
-  <span class="success-label">ORDER COMPLETE</span>
-
-  <h2>הדוכן סיים את כל ההזמנות!</h2>
-
-  <p>
-    כל הכבוד! השלמת את כל שלבי משחק ה־Flexbox.
-  </p>
-
-  <div class="final-score">
-    <span>סה״כ ניסיונות</span>
-    <strong id="final-attempts">0</strong>
-  </div>
-
-  <button id="restart-btn">
-    🌭 התחל מחדש
-  </button>
-
-</div>
-```
-
-  </div>
 
   <script src="script.js"></script>
 
