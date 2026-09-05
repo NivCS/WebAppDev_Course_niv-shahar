@@ -1,130 +1,113 @@
-const selectIds = [
-  "sel-flex-direction",
-  "sel-justify-content",
-  "sel-align-items",
-  "sel-flex-wrap"
-];
-
-const defaultSelections = {
-  "sel-flex-direction": "row",
-  "sel-justify-content": "flex-start",
-  "sel-align-items": "flex-start",
-  "sel-flex-wrap": "nowrap"
-};
-
-
-/* Game steps */
-
 const steps = [
 
   {
-    title: "הזמנה מספר 1",
-
-    goal: "שים את הנקניקייה בצד ימין של הדוכן.",
+    title: "הנקניקייה מחכה!",
+    instruction: "שים את הנקניקייה בצד ימין של הדוכן.",
+    items: 1,
 
     expected: {
-      "sel-flex-direction": "row",
-      "sel-justify-content": "flex-end",
-      "sel-align-items": "flex-start",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "flex-start",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 2",
-
-    goal: "מרכז את הנקניקייה אופקית באמצע הדוכן.",
+    title: "מגיעים למרכז",
+    instruction: "מרכז את הנקניקייה אופקית באמצע הדוכן.",
+    items: 1,
 
     expected: {
-      "sel-flex-direction": "row",
-      "sel-justify-content": "center",
-      "sel-align-items": "flex-start",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 3",
-
-    goal: "שים את הנקניקייה במרכז התחתון של הדוכן.",
+    title: "פינה מושלמת",
+    instruction: "שים את הנקניקייה בפינה הימנית התחתונה.",
+    items: 1,
 
     expected: {
-      "sel-flex-direction": "row",
-      "sel-justify-content": "center",
-      "sel-align-items": "flex-end",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 4",
-
-    goal: "שים את הנקניקייה בפינה הימנית התחתונה.",
+    title: "משנים כיוון!",
+    instruction: "השתמש ב-flex-direction: column כדי להעביר את הנקניקייה לתחתית.",
+    items: 1,
 
     expected: {
-      "sel-flex-direction": "row",
-      "sel-justify-content": "flex-end",
-      "sel-align-items": "flex-end",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "column",
+      justifyContent: "flex-end",
+      alignItems: "flex-start",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 5",
-
-    goal: "מרכז את הנקניקייה בדיוק באמצע הדוכן.",
+    title: "למטה ובצד",
+    instruction: "השתמש בכיוון עמודה כדי למקם את הנקניקייה בתחתית בצד ימין.",
+    items: 1,
 
     expected: {
-      "sel-flex-direction": "row",
-      "sel-justify-content": "center",
-      "sel-align-items": "center",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "column",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 6",
-
-    goal: "העבר את הנקניקייה לתחתית הדוכן באמצעות כיוון עמודה.",
+    title: "הזמנה זוגית",
+    instruction: "יש שתי נקניקיות ושתי לחמניות. סדר אותן במרכז הדוכן, אחת ליד השנייה.",
+    items: 2,
 
     expected: {
-      "sel-flex-direction": "column",
-      "sel-justify-content": "flex-end",
-      "sel-align-items": "center",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "nowrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 7",
-
-    goal: "העבר את הנקניקייה לתחתית בצד ימין באמצעות שינוי כיוון הצירים.",
+    title: "הזמנה גדולה",
+    instruction: "יש שלוש נקניקיות ושלוש לחמניות. סדר אותן בשתי שורות בעזרת flex-wrap.",
+    items: 3,
 
     expected: {
-      "sel-flex-direction": "column",
-      "sel-justify-content": "flex-end",
-      "sel-align-items": "flex-end",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap"
     }
   },
 
 
   {
-    title: "הזמנה מספר 8",
-
-    goal: "אתגר הסיום: השתמש ב־column-reverse כדי למקם את הנקניקייה במרכז.",
+    title: "אתגר השף 🌭",
+    instruction: "שלוש נקניקיות ושלוש לחמניות. השתמש ב-column וב-flex-wrap כדי לסדר את כולן.",
+    items: 3,
 
     expected: {
-      "sel-flex-direction": "column-reverse",
-      "sel-justify-content": "center",
-      "sel-align-items": "center",
-      "sel-flex-wrap": "nowrap"
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap"
     }
   }
 
@@ -133,19 +116,15 @@ const steps = [
 
 let currentStep = 0;
 
-const stepCompleted =
-  Array(steps.length).fill(false);
+let attempts = 0;
 
-const stepSelections =
-  steps.map(() => ({
-    ...defaultSelections
-  }));
+let completedSteps = new Set();
 
-const stepAttempts =
-  Array(steps.length).fill(0);
+let isTransitioning = false;
 
 
-/* DOM elements */
+const arena =
+  document.getElementById("arena");
 
 const flexContainer =
   document.getElementById("flex-container");
@@ -153,355 +132,493 @@ const flexContainer =
 const targetContainer =
   document.getElementById("target-container");
 
-const goalTitle =
-  document.getElementById("goal-title");
 
-const goalText =
-  document.getElementById("goal-text");
+const directionSelect =
+  document.getElementById("flex-direction");
 
-const stepNum =
-  document.getElementById("step-num");
+const justifySelect =
+  document.getElementById("justify-content");
 
-const progressFill =
-  document.getElementById("progress-fill");
+const alignSelect =
+  document.getElementById("align-items");
+
+const wrapSelect =
+  document.getElementById("flex-wrap");
+
+
+const checkButton =
+  document.getElementById("check-button");
+
+const resetButton =
+  document.getElementById("reset-button");
+
+
+const prevButton =
+  document.getElementById("prev-button");
+
+const nextButton =
+  document.getElementById("next-button");
+
 
 const feedback =
   document.getElementById("feedback");
 
-const attempts =
+const attemptsElement =
   document.getElementById("attempts");
 
-const checkButton =
-  document.getElementById("check-btn");
 
-const resetButton =
-  document.getElementById("reset-btn");
+const stepNumber =
+  document.getElementById("step-number");
 
-const nextButton =
-  document.getElementById("next-btn");
+const totalSteps =
+  document.getElementById("total-steps");
 
-const prevButton =
-  document.getElementById("prev-btn");
+const progressFill =
+  document.getElementById("progress-fill");
 
-const arena =
-  document.getElementById("arena-wrapper");
 
-const dots =
-  document.getElementById("dots");
+const stepTitle =
+  document.getElementById("step-title");
+
+const stepInstruction =
+  document.getElementById("step-instruction");
+
+
+const stepDots =
+  document.getElementById("step-dots");
+
 
 const successOverlay =
   document.getElementById("success-overlay");
+
+const successTitle =
+  document.getElementById("success-title");
+
+const successMessage =
+  document.getElementById("success-message");
 
 const finalAttempts =
   document.getElementById("final-attempts");
 
 const restartButton =
-  document.getElementById("restart-btn");
+  document.getElementById("restart-button");
 
 
-/* Initialize */
-
-function init() {
-
-  renderDots();
-
-  loadStep(0);
+totalSteps.textContent =
+  steps.length;
 
 
-  selectIds.forEach(id => {
+/* Create food item */
 
-    document
-      .getElementById(id)
-      .addEventListener(
-        "change",
-        onSelectChange
+function createFoodItem(type, isTarget) {
+
+  const item =
+    document.createElement("div");
+
+
+  if (isTarget) {
+
+    item.classList.add("target-bun");
+
+  } else {
+
+    item.classList.add("hotdog-item");
+
+  }
+
+
+  const image =
+    document.createElement("img");
+
+
+  if (type === "hotdog") {
+
+    image.src =
+      "images/hotdog.png";
+
+    image.alt =
+      "נקניקייה";
+
+  } else {
+
+    image.src =
+      "images/bread.png";
+
+    image.alt =
+      "לחמנייה";
+
+  }
+
+
+  item.appendChild(image);
+
+
+  return item;
+}
+
+
+/* Build stage */
+
+function buildStageItems() {
+
+  flexContainer.innerHTML = "";
+
+  targetContainer.innerHTML = "";
+
+
+  const count =
+    steps[currentStep].items;
+
+
+  for (let i = 0; i < count; i++) {
+
+    const playerItem =
+      createFoodItem(
+        "hotdog",
+        false
       );
 
-  });
+
+    const targetItem =
+      createFoodItem(
+        "bread",
+        true
+      );
 
 
-  checkButton.addEventListener(
-    "click",
-    checkSolution
-  );
+    flexContainer.appendChild(
+      playerItem
+    );
 
 
-  resetButton.addEventListener(
-    "click",
-    resetStep
-  );
-
-
-  nextButton.addEventListener(
-    "click",
-    nextStep
-  );
-
-
-  prevButton.addEventListener(
-    "click",
-    prevStep
-  );
-
-
-  restartButton.addEventListener(
-    "click",
-    restartGame
-  );
-
+    targetContainer.appendChild(
+      targetItem
+    );
+  }
 }
 
 
 /* Apply Flexbox properties */
 
-function applyFlexProperties(element, values) {
+function applyFlexProperties(
+  element,
+  values
+) {
 
   element.style.flexDirection =
-    values["sel-flex-direction"];
+    values.flexDirection;
 
   element.style.justifyContent =
-    values["sel-justify-content"];
+    values.justifyContent;
 
   element.style.alignItems =
-    values["sel-align-items"];
+    values.alignItems;
 
   element.style.flexWrap =
-    values["sel-flex-wrap"];
-
+    values.flexWrap;
 }
 
 
-/* Apply player's current selections */
+/* Get selected values */
 
-function applyPlayerCSS() {
+function getSelectedValues() {
 
-  const values = {
+  return {
 
-    "sel-flex-direction":
-      document.getElementById(
-        "sel-flex-direction"
-      ).value,
+    flexDirection:
+      directionSelect.value,
 
-    "sel-justify-content":
-      document.getElementById(
-        "sel-justify-content"
-      ).value,
+    justifyContent:
+      justifySelect.value,
 
-    "sel-align-items":
-      document.getElementById(
-        "sel-align-items"
-      ).value,
+    alignItems:
+      alignSelect.value,
 
-    "sel-flex-wrap":
-      document.getElementById(
-        "sel-flex-wrap"
-      ).value
+    flexWrap:
+      wrapSelect.value
 
   };
-
-
-  applyFlexProperties(
-    flexContainer,
-    values
-  );
-
 }
 
 
-/* Apply expected solution to target */
+/* Apply target */
 
 function applyTargetCSS() {
 
-  const expected =
-    steps[currentStep].expected;
-
-
   applyFlexProperties(
     targetContainer,
-    expected
+    steps[currentStep].expected
   );
-
 }
 
 
-/* Load step */
+/* Apply player */
 
-function loadStep(index) {
+function applyPlayerCSS() {
 
-  currentStep = index;
+  applyFlexProperties(
+    flexContainer,
+    getSelectedValues()
+  );
+}
+
+
+/* Reset controls */
+
+function resetControls() {
+
+  directionSelect.value =
+    "row";
+
+  justifySelect.value =
+    "flex-start";
+
+  alignSelect.value =
+    "flex-start";
+
+  wrapSelect.value =
+    "nowrap";
+
+
+  applyPlayerCSS();
+}
+
+
+/* Update attempts */
+
+function updateAttempts() {
+
+  attemptsElement.textContent =
+    attempts;
+}
+
+
+/* Update progress */
+
+function updateProgress() {
+
+  const progress =
+    ((currentStep + 1) / steps.length) * 100;
+
+
+  progressFill.style.width =
+    `${progress}%`;
+}
+
+
+/* Update stage information */
+
+function updateStepInformation() {
 
   const step =
     steps[currentStep];
 
 
-  goalTitle.textContent =
-    step.title;
-
-  goalText.textContent =
-    step.goal;
-
-  stepNum.textContent =
+  stepNumber.textContent =
     currentStep + 1;
 
 
-  selectIds.forEach(id => {
-
-    document.getElementById(id).value =
-      stepSelections[currentStep][id];
-
-  });
+  stepTitle.textContent =
+    step.title;
 
 
-  /*
-   * The target uses the exact same Flexbox
-   * structure as the player's container.
-   * The only difference is that it contains
-   * the bread instead of the hotdog.
-   */
+  stepInstruction.textContent =
+    step.instruction;
+}
+
+
+/* Update navigation */
+
+function updateNavigation() {
+
+  prevButton.disabled =
+    currentStep === 0;
+
+
+  nextButton.disabled =
+    currentStep === steps.length - 1;
+}
+
+
+/* Create dots */
+
+function createDots() {
+
+  stepDots.innerHTML = "";
+
+
+  steps.forEach(
+    (step, index) => {
+
+      const dot =
+        document.createElement("div");
+
+
+      dot.classList.add("dot");
+
+
+      if (
+        completedSteps.has(index)
+      ) {
+
+        dot.classList.add(
+          "completed"
+        );
+      }
+
+
+      if (
+        index === currentStep
+      ) {
+
+        dot.classList.add(
+          "current"
+        );
+      }
+
+
+      stepDots.appendChild(dot);
+
+    }
+  );
+}
+
+
+/* Load stage */
+
+function loadStep() {
+
+  isTransitioning = false;
+
+
+  feedback.textContent = "";
+
+  feedback.className =
+    "feedback";
+
+
+  arena.classList.remove(
+    "correct",
+    "wrong"
+  );
+
+
+  buildStageItems();
 
   applyTargetCSS();
 
-  applyPlayerCSS();
+  resetControls();
 
-
-  clearFeedback();
+  updateStepInformation();
 
   updateAttempts();
-
-  updateButtons();
 
   updateProgress();
 
-  updateDots();
+  updateNavigation();
 
+  createDots();
 }
 
 
-/* Select changed */
+/* Check item positions */
 
-function onSelectChange() {
+function positionsMatch() {
 
-  applyPlayerCSS();
-
-  clearFeedback();
-
-  arena.classList.remove("wrong");
-
-}
-
-
-/* Check solution */
-
-function checkSolution() {
-
-  if (stepCompleted[currentStep]) {
-
-    nextStep();
-
-    return;
-
-  }
-
-
-  stepAttempts[currentStep]++;
-
-  updateAttempts();
-
-
-  selectIds.forEach(id => {
-
-    stepSelections[currentStep][id] =
-      document.getElementById(id).value;
-
-  });
-
-
-  applyPlayerCSS();
-
-
-  /*
-   * Compare the actual position of the
-   * hotdog with the actual position of
-   * the bread target.
-   */
-
-  const hotdog =
-    document.querySelector(".hotdog-item");
-
-  const bread =
-    document.querySelector(".target-bun");
-
-
-  const hotdogRect =
-    hotdog.getBoundingClientRect();
-
-  const breadRect =
-    bread.getBoundingClientRect();
-
-
-  const hotdogCenterX =
-    hotdogRect.left +
-    hotdogRect.width / 2;
-
-  const hotdogCenterY =
-    hotdogRect.top +
-    hotdogRect.height / 2;
-
-
-  const breadCenterX =
-    breadRect.left +
-    breadRect.width / 2;
-
-  const breadCenterY =
-    breadRect.top +
-    breadRect.height / 2;
-
-
-  const distance =
-    Math.sqrt(
-      Math.pow(
-        hotdogCenterX - breadCenterX,
-        2
-      ) +
-      Math.pow(
-        hotdogCenterY - breadCenterY,
-        2
-      )
+  const playerItems =
+    flexContainer.querySelectorAll(
+      ".hotdog-item"
     );
 
 
-  /*
-   * If both containers have the same
-   * Flexbox layout, their items should
-   * occupy the same position.
-   */
-
-  const tolerance = 5;
+  const targetItems =
+    targetContainer.querySelectorAll(
+      ".target-bun"
+    );
 
 
-  if (distance <= tolerance) {
+  if (
+    playerItems.length !==
+    targetItems.length
+  ) {
 
-    completeStep();
-
-  } else {
-
-    showError();
-
+    return false;
   }
 
+
+  const tolerance = 8;
+
+
+  for (
+    let i = 0;
+    i < playerItems.length;
+    i++
+  ) {
+
+    const playerRect =
+      playerItems[i]
+        .getBoundingClientRect();
+
+
+    const targetRect =
+      targetItems[i]
+        .getBoundingClientRect();
+
+
+    const playerCenterX =
+      playerRect.left +
+      playerRect.width / 2;
+
+
+    const playerCenterY =
+      playerRect.top +
+      playerRect.height / 2;
+
+
+    const targetCenterX =
+      targetRect.left +
+      targetRect.width / 2;
+
+
+    const targetCenterY =
+      targetRect.top +
+      targetRect.height / 2;
+
+
+    const distanceX =
+      Math.abs(
+        playerCenterX -
+        targetCenterX
+      );
+
+
+    const distanceY =
+      Math.abs(
+        playerCenterY -
+        targetCenterY
+      );
+
+
+    if (
+      distanceX > tolerance ||
+      distanceY > tolerance
+    ) {
+
+      return false;
+    }
+  }
+
+
+  return true;
 }
 
 
-/* Complete step */
+/* Show success */
 
-function completeStep() {
-
-  stepCompleted[currentStep] =
-    true;
-
+function showSuccessFeedback() {
 
   feedback.textContent =
-    "✅ מעולה! הנקניקייה על הלחמנייה!";
+    "✓ כל הכבוד! ההזמנה מוכנה!";
 
   feedback.className =
     "feedback success";
@@ -514,32 +631,15 @@ function completeStep() {
   arena.classList.add(
     "correct"
   );
-
-
-  updateButtons();
-
-  updateProgress();
-
-  updateDots();
-
-
-  setTimeout(() => {
-
-    arena.classList.remove(
-      "correct"
-    );
-
-  }, 700);
-
 }
 
 
-/* Wrong answer */
+/* Show error */
 
-function showError() {
+function showErrorFeedback() {
 
   feedback.textContent =
-    "❌ לא נכון... שנה את ערכי ה־Flexbox ונסה שוב.";
+    "✗ כמעט! נסה לשנות את הגדרות ה-Flexbox.";
 
   feedback.className =
     "feedback error";
@@ -549,345 +649,240 @@ function showError() {
     "correct"
   );
 
-  arena.classList.remove(
-    "wrong"
-  );
-
-
-  void arena.offsetWidth;
-
-
   arena.classList.add(
     "wrong"
   );
-
-
-  setTimeout(() => {
-
-    arena.classList.remove(
-      "wrong"
-    );
-
-  }, 400);
-
 }
 
 
-/* Reset */
+/* Check solution */
 
-function resetStep() {
+function checkSolution() {
 
-  selectIds.forEach(id => {
-
-    document.getElementById(id).value =
-      defaultSelections[id];
-
-    stepSelections[currentStep][id] =
-      defaultSelections[id];
-
-  });
+  if (isTransitioning) {
+    return;
+  }
 
 
-  stepCompleted[currentStep] =
-    false;
+  attempts++;
+
+  updateAttempts();
 
 
   applyPlayerCSS();
 
-  clearFeedback();
+
+  requestAnimationFrame(() => {
+
+    if (!positionsMatch()) {
+
+      showErrorFeedback();
+
+      return;
+    }
 
 
-  arena.classList.remove(
-    "correct"
-  );
-
-  arena.classList.remove(
-    "wrong"
-  );
+    completedSteps.add(
+      currentStep
+    );
 
 
-  updateButtons();
+    showSuccessFeedback();
 
-  updateProgress();
-
-  updateDots();
-
-}
+    createDots();
 
 
-/* Clear feedback */
-
-function clearFeedback() {
-
-  feedback.textContent =
-    "";
-
-  feedback.className =
-    "feedback";
-
-}
+    isTransitioning = true;
 
 
-/* Attempts */
-
-function updateAttempts() {
-
-  attempts.textContent =
-    stepAttempts[currentStep];
-
-}
-
-
-/* Buttons */
-
-function updateButtons() {
-
-  prevButton.disabled =
-    currentStep === 0;
-
-
-  nextButton.disabled =
-    !stepCompleted[currentStep];
-
-
-  if (stepCompleted[currentStep]) {
+    /* Final stage */
 
     if (
       currentStep ===
       steps.length - 1
     ) {
 
-      checkButton.innerHTML =
-        "<span>🏆</span> סיום המשחק";
+      setTimeout(() => {
 
-    } else {
+        successTitle.textContent =
+          "הדוכן מוכן! 🏆";
 
-      checkButton.innerHTML =
-        "<span>→</span> עבור לשלב הבא";
 
+        successMessage.textContent =
+          `סיימת בהצלחה את כל ${steps.length} השלבים!`;
+
+
+        finalAttempts.textContent =
+          attempts;
+
+
+        successOverlay.classList.remove(
+          "hidden"
+        );
+
+
+        isTransitioning = false;
+
+      }, 1200);
+
+
+      return;
     }
 
-  } else {
 
-    checkButton.innerHTML =
-      "<span>✓</span> בדוק את ההזמנה";
+    /* Regular stage */
 
-  }
+    setTimeout(() => {
 
+      currentStep++;
+
+      loadStep();
+
+    }, 1200);
+
+  });
 }
 
 
-/* Progress */
+/* Reset */
 
-function updateProgress() {
+function resetCurrentStep() {
 
-  const completed =
-    stepCompleted.filter(
-      Boolean
-    ).length;
-
-
-  const progress =
-    (completed / steps.length) * 100;
-
-
-  progressFill.style.width =
-    `${progress}%`;
-
-}
-
-
-/* Next */
-
-function nextStep() {
-
-  if (
-    !stepCompleted[currentStep]
-  ) {
-
+  if (isTransitioning) {
     return;
-
   }
 
 
-  if (
-    currentStep ===
-    steps.length - 1
-  ) {
+  attempts = 0;
 
-    finishGame();
-
-    return;
-
-  }
+  updateAttempts();
 
 
-  currentStep++;
+  arena.classList.remove(
+    "correct",
+    "wrong"
+  );
 
-  loadStep(currentStep);
 
+  feedback.textContent = "";
+
+  feedback.className =
+    "feedback";
+
+
+  resetControls();
+
+  applyTargetCSS();
 }
 
 
 /* Previous */
 
-function prevStep() {
+prevButton.addEventListener(
+  "click",
+  () => {
 
-  if (currentStep <= 0) {
+    if (
+      isTransitioning ||
+      currentStep === 0
+    ) {
 
-    return;
+      return;
+    }
+
+
+    currentStep--;
+
+    loadStep();
 
   }
+);
 
 
-  currentStep--;
+/* Next */
 
-  loadStep(currentStep);
-
-}
-
-
-/* Dots */
-
-function renderDots() {
-
-  dots.innerHTML = "";
-
-
-  steps.forEach((_, index) => {
-
-    const dot =
-      document.createElement("div");
-
-    dot.className =
-      "dot";
-
-    dot.id =
-      `dot-${index}`;
-
-
-    dot.addEventListener(
-      "click",
-      () => {
-
-        if (
-          stepCompleted[index] ||
-          index === currentStep
-        ) {
-
-          loadStep(index);
-
-        }
-
-      }
-    );
-
-
-    dots.appendChild(dot);
-
-  });
-
-}
-
-
-/* Update dots */
-
-function updateDots() {
-
-  steps.forEach((_, index) => {
-
-    const dot =
-      document.getElementById(
-        `dot-${index}`
-      );
-
-
-    dot.className =
-      "dot";
-
+nextButton.addEventListener(
+  "click",
+  () => {
 
     if (
-      stepCompleted[index]
+      isTransitioning ||
+      currentStep ===
+      steps.length - 1
     ) {
 
-      dot.classList.add(
-        "completed"
-      );
-
+      return;
     }
 
 
-    if (
-      index === currentStep
-    ) {
+    currentStep++;
 
-      dot.classList.add(
-        "current"
-      );
+    loadStep();
 
-    }
-
-  });
-
-}
+  }
+);
 
 
-/* Finish */
+/* Controls */
 
-function finishGame() {
+directionSelect.addEventListener(
+  "change",
+  applyPlayerCSS
+);
 
-  const totalAttempts =
-    stepAttempts.reduce(
-      (sum, value) =>
-        sum + value,
-      0
-    );
+justifySelect.addEventListener(
+  "change",
+  applyPlayerCSS
+);
+
+alignSelect.addEventListener(
+  "change",
+  applyPlayerCSS
+);
+
+wrapSelect.addEventListener(
+  "change",
+  applyPlayerCSS
+);
 
 
-  finalAttempts.textContent =
-    totalAttempts;
+/* Buttons */
 
+checkButton.addEventListener(
+  "click",
+  checkSolution
+);
 
-  progressFill.style.width =
-    "100%";
-
-
-  successOverlay.classList.remove(
-    "hidden"
-  );
-
-}
+resetButton.addEventListener(
+  "click",
+  resetCurrentStep
+);
 
 
 /* Restart */
 
-function restartGame() {
+restartButton.addEventListener(
+  "click",
+  () => {
 
-  currentStep = 0;
+    currentStep = 0;
 
+    attempts = 0;
 
-  stepCompleted.fill(false);
-
-  stepAttempts.fill(0);
-
-
-  steps.forEach((_, index) => {
-
-    stepSelections[index] = {
-      ...defaultSelections
-    };
-
-  });
+    completedSteps.clear();
 
 
-  successOverlay.classList.add(
-    "hidden"
-  );
+    successOverlay.classList.add(
+      "hidden"
+    );
 
 
-  loadStep(0);
+    loadStep();
 
-}
+  }
+);
 
 
-init();
+/* Start */
+
+loadStep();

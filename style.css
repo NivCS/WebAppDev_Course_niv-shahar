@@ -373,6 +373,10 @@ main {
   display: flex;
 
   padding: 35px 18px 28px;
+
+  direction: ltr;
+
+  gap: 10px;
 }
 
 
