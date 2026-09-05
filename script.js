@@ -9,54 +9,25 @@ const stepBg = [
 
 const steps = [
   {
-    goal: "הזז את שלוש הקופסאות לצד הימני של המיכל.",
-    items: [
-      { label: '1', color: '#e74c3c' },
-      { label: '2', color: '#3498db' },
-      { label: '3', color: '#2ecc71' }
-    ],
+    goal: "הזז את הנקניקייה לצד הימני של המיכל.",
     expected: {
       'sel-flex-direction':  'row',
       'sel-justify-content': 'flex-end',
-      'sel-align-items':     'stretch',
+      'sel-align-items':     'flex-start',
       'sel-flex-wrap':       'nowrap'
     }
   },
   {
-    goal: "מרכז את הקופסאות לאמצע המיכל (אופקית).",
-    items: [
-      { label: 'A', color: '#9b59b6' },
-      { label: 'B', color: '#f39c12' },
-      { label: 'C', color: '#1abc9c' }
-    ],
+    goal: "מרכז את הנקניקייה אופקית.",
     expected: {
       'sel-flex-direction':  'row',
       'sel-justify-content': 'center',
-      'sel-align-items':     'stretch',
+      'sel-align-items':     'flex-start',
       'sel-flex-wrap':       'nowrap'
     }
   },
   {
-    goal: "סדר את הקופסאות בעמודה אנכית — אחת מתחת לשנייה.",
-    items: [
-      { label: 'X', color: '#e74c3c' },
-      { label: 'Y', color: '#e67e22' },
-      { label: 'Z', color: '#27ae60' }
-    ],
-    expected: {
-      'sel-flex-direction':  'column',
-      'sel-justify-content': 'flex-start',
-      'sel-align-items':     'stretch',
-      'sel-flex-wrap':       'nowrap'
-    }
-  },
-  {
-    goal: "הזז את הקופסאות לתחתית המיכל (ציר אנכי).",
-    items: [
-      { label: '🐸', color: '#16a085', height: '55px' },
-      { label: '🌟', color: '#8e44ad', height: '85px' },
-      { label: '🚀', color: '#c0392b', height: '65px' }
-    ],
+    goal: "הזז את הנקניקייה לתחתית המיכל.",
     expected: {
       'sel-flex-direction':  'row',
       'sel-justify-content': 'flex-start',
@@ -65,35 +36,30 @@ const steps = [
     }
   },
   {
-    goal: "פזר את הקופסאות כך שיהיה רווח שווה ביניהן — ללא רווח בקצוות.",
-    items: [
-      { label: '1', color: '#e74c3c' },
-      { label: '2', color: '#3498db' },
-      { label: '3', color: '#f1c40f' },
-      { label: '4', color: '#2ecc71' }
-    ],
+    goal: "הזז את הנקניקייה לפינה הימנית התחתונה.",
     expected: {
       'sel-flex-direction':  'row',
-      'sel-justify-content': 'space-between',
-      'sel-align-items':     'stretch',
+      'sel-justify-content': 'flex-end',
+      'sel-align-items':     'flex-end',
       'sel-flex-wrap':       'nowrap'
     }
   },
   {
-    goal: "גרום לקופסאות לעבור לשורה הבאה כשאין מקום, ומרכז אותן אופקית.",
-    items: [
-      { label: 'A', color: '#e74c3c', width: '110px' },
-      { label: 'B', color: '#3498db', width: '110px' },
-      { label: 'C', color: '#2ecc71', width: '110px' },
-      { label: 'D', color: '#f1c40f', width: '110px' },
-      { label: 'E', color: '#9b59b6', width: '110px' },
-      { label: 'F', color: '#1abc9c', width: '110px' }
-    ],
+    goal: "מרכז את הנקניקייה בדיוק באמצע המיכל.",
     expected: {
       'sel-flex-direction':  'row',
       'sel-justify-content': 'center',
-      'sel-align-items':     'stretch',
-      'sel-flex-wrap':       'wrap'
+      'sel-align-items':     'center',
+      'sel-flex-wrap':       'nowrap'
+    }
+  },
+  {
+    goal: "הזז את הנקניקייה לתחתית המיכל בכיוון עמודה.",
+    expected: {
+      'sel-flex-direction':  'column',
+      'sel-justify-content': 'flex-end',
+      'sel-align-items':     'flex-start',
+      'sel-flex-wrap':       'nowrap'
     }
   }
 ];
@@ -104,7 +70,7 @@ const cssPropNames = ['flex-direction', 'justify-content', 'align-items', 'flex-
 const defaultSelections = {
   'sel-flex-direction':  'row',
   'sel-justify-content': 'flex-start',
-  'sel-align-items':     'stretch',
+  'sel-align-items':     'flex-start',
   'sel-flex-wrap':       'nowrap'
 };
 
@@ -147,25 +113,26 @@ function loadStep(index) {
   document.getElementById('progress-fill').style.width = pct + '%';
 
   document.body.style.background = stepBg[index].page;
-  document.getElementById('flex-container').style.background = stepBg[index].arena;
+  document.getElementById('arena-wrapper').style.background = stepBg[index].arena;
 
-  renderItems(step);
+  applyExpectedToTarget(index);
   applySelectsToContainer();
   updateAttempts();
   updateDots();
 }
 
-function renderItems(step) {
-  const container = document.getElementById('flex-container');
-  container.innerHTML = '';
-  step.items.forEach(item => {
-    const box = document.createElement('div');
-    box.className = 'box';
-    box.textContent = item.label;
-    box.style.background = item.color;
-    if (item.height) box.style.minHeight = item.height;
-    if (item.width)  box.style.minWidth  = item.width;
-    container.appendChild(box);
+function applyExpectedToTarget(index) {
+  const target   = document.getElementById('flex-target');
+  const expected = steps[index].expected;
+  target.style.cssText = '';
+  target.style.position = 'absolute';
+  target.style.inset    = '0';
+  target.style.display  = 'flex';
+  target.style.padding  = '16px';
+  target.style.zIndex   = '1';
+  target.style.pointerEvents = 'none';
+  cssPropNames.forEach((cssProp, i) => {
+    target.style.setProperty(cssProp, expected[selectIds[i]]);
   });
 }
 
@@ -179,20 +146,19 @@ function onSelectChange() {
 }
 
 function updateAttempts() {
-  const n = stepAttempts[currentStep];
+  const n  = stepAttempts[currentStep];
   const el = document.getElementById('attempts');
   el.textContent = n > 0 ? `ניסיונות: ${n}` : '';
 }
 
 function applySelectsToContainer() {
   const container = document.getElementById('flex-container');
-  const bg = stepBg[currentStep].arena;
-  container.style.cssText = '';
-  container.style.display    = 'flex';
-  container.style.gap        = '10px';
-  container.style.padding    = '16px';
-  container.style.minHeight  = '260px';
-  container.style.background = bg;
+  container.style.cssText  = '';
+  container.style.position = 'absolute';
+  container.style.inset    = '0';
+  container.style.display  = 'flex';
+  container.style.padding  = '16px';
+  container.style.zIndex   = '2';
 
   cssPropNames.forEach((cssProp, i) => {
     const val = document.getElementById(selectIds[i]).value;
@@ -212,16 +178,22 @@ function checkSolution() {
 
   applySelectsToContainer();
 
-  const expected = steps[currentStep].expected;
+  const hotdog = document.getElementById('hotdog-img');
+  const bun    = document.getElementById('bun-img');
+  const hRect  = hotdog.getBoundingClientRect();
+  const bRect  = bun.getBoundingClientRect();
+
+  const hCx = hRect.left + hRect.width  / 2;
+  const hCy = hRect.top  + hRect.height / 2;
+  const bCx = bRect.left + bRect.width  / 2;
+  const bCy = bRect.top  + bRect.height / 2;
+  const dist = Math.sqrt((hCx - bCx) ** 2 + (hCy - bCy) ** 2);
+
   const feedback = document.getElementById('feedback');
 
-  const allMatch = selectIds.every(id => {
-    return document.getElementById(id).value === expected[id];
-  });
-
-  if (allMatch) {
+  if (dist < 15) {
     stepCompleted[currentStep] = true;
-    feedback.textContent = '✅ מעולה! עברת את השלב!';
+    feedback.textContent = '✅ מעולה! הנקניקייה על הלחמנייה!';
     feedback.className   = 'feedback success';
     document.getElementById('next-btn').disabled = false;
     const checkBtn = document.getElementById('check-btn');
@@ -238,8 +210,8 @@ function checkSolution() {
 
 function resetStep() {
   selectIds.forEach(id => {
-    document.getElementById(id).value = defaultSelections[id];
-    stepSelections[currentStep][id]   = defaultSelections[id];
+    document.getElementById(id).value  = defaultSelections[id];
+    stepSelections[currentStep][id]    = defaultSelections[id];
   });
   applySelectsToContainer();
   document.getElementById('feedback').textContent = '';
@@ -285,7 +257,7 @@ function updateDots() {
   steps.forEach((_, i) => {
     const dot = document.getElementById('dot-' + i);
     dot.className = 'dot';
-    if (stepCompleted[i])    dot.classList.add('completed');
+    if (stepCompleted[i])       dot.classList.add('completed');
     else if (i === currentStep) dot.classList.add('current');
   });
 }

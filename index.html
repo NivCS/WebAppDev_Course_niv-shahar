@@ -56,10 +56,10 @@
           <div class="select-row">
             <label class="prop-label">align-items</label>
             <select id="sel-align-items" onchange="onSelectChange()">
-              <option value="stretch">stretch</option>
               <option value="flex-start">flex-start</option>
               <option value="flex-end">flex-end</option>
               <option value="center">center</option>
+              <option value="stretch">stretch</option>
               <option value="baseline">baseline</option>
             </select>
           </div>
@@ -87,8 +87,15 @@
       <!-- Preview -->
       <section class="preview-section">
         <h2>👁️ תצוגה מקדימה</h2>
-        <div class="flex-arena" id="flex-container" dir="ltr">
-          <!-- items injected by JS -->
+        <div class="arena-wrapper" id="arena-wrapper">
+          <!-- Bun: ghost target, always at correct position -->
+          <div class="flex-layer" id="flex-target" dir="ltr">
+            <img src="images/bun.jpeg" id="bun-img" class="arena-img" />
+          </div>
+          <!-- Hotdog: moves with user CSS -->
+          <div class="flex-layer" id="flex-container" dir="ltr">
+            <img src="images/hotdog.jpeg" id="hotdog-img" class="arena-img" />
+          </div>
         </div>
       </section>
 

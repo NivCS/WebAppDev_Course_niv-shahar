@@ -83,11 +83,6 @@ section h2 {
   font-size: 1.05rem;
   line-height: 1.6;
   color: #ddd;
-  margin-bottom: 12px;
-}
-
-.hidden {
-  display: none !important;
 }
 
 /* ─── Editor ─── */
@@ -186,37 +181,46 @@ section h2 {
   color: #888;
 }
 
-/* ─── Preview ─── */
-.preview-section {
-  min-height: 200px;
-}
+.hidden { display: none !important; }
 
-.flex-arena {
-  display: flex;
-  min-height: 260px;
+/* ─── Preview ─── */
+.arena-wrapper {
+  position: relative;
+  height: 300px;
   border: 2px dashed #3a5a8a;
   border-radius: 10px;
-  padding: 16px;
-  background: #0f1e3d;
-  transition: all 0.35s ease;
-  gap: 10px;
+  overflow: hidden;
+  transition: background 0.5s ease;
 }
 
-.box {
+.flex-layer {
+  position: absolute;
+  inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #fff;
-  min-width: 60px;
-  min-height: 60px;
-  padding: 10px;
-  transition: all 0.35s ease;
+  padding: 16px;
+}
+
+/* Bun: ghost target */
+#flex-target {
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hotdog: player */
+#flex-container {
+  z-index: 2;
+}
+
+.arena-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
   flex-shrink: 0;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+#bun-img {
+  opacity: 0.4;
+  filter: drop-shadow(0 0 8px #ffd200);
 }
 
 /* ─── Footer ─── */
