@@ -90,7 +90,7 @@ const steps = [
   {
     title: "הזמנה מספר 6",
 
-    goal: "הפוך את כיוון הדוכן לעמודה והצב את הנקניקייה בתחתית.",
+    goal: "העבר את הנקניקייה לתחתית הדוכן באמצעות כיוון עמודה.",
 
     expected: {
       "sel-flex-direction": "column",
@@ -104,7 +104,7 @@ const steps = [
   {
     title: "הזמנה מספר 7",
 
-    goal: "העבר את הנקניקייה לתחתית בצד ימין באמצעות שינוי כיוון הציר.",
+    goal: "העבר את הנקניקייה לתחתית בצד ימין באמצעות שינוי כיוון הצירים.",
 
     expected: {
       "sel-flex-direction": "column",
@@ -118,7 +118,7 @@ const steps = [
   {
     title: "הזמנה מספר 8",
 
-    goal: "אתגר הסיום: מרכז את הנקניקייה באמצעות column-reverse.",
+    goal: "אתגר הסיום: השתמש ב־column-reverse כדי למקם את הנקניקייה במרכז.",
 
     expected: {
       "sel-flex-direction": "column-reverse",
@@ -149,6 +149,9 @@ const stepAttempts =
 
 const flexContainer =
   document.getElementById("flex-container");
+
+const targetContainer =
+  document.getElementById("target-container");
 
 const goalTitle =
   document.getElementById("goal-title");
@@ -204,6 +207,7 @@ function init() {
 
   loadStep(0);
 
+
   selectIds.forEach(id => {
 
     document
@@ -215,29 +219,106 @@ function init() {
 
   });
 
+
   checkButton.addEventListener(
     "click",
     checkSolution
   );
+
 
   resetButton.addEventListener(
     "click",
     resetStep
   );
 
+
   nextButton.addEventListener(
     "click",
     nextStep
   );
+
 
   prevButton.addEventListener(
     "click",
     prevStep
   );
 
+
   restartButton.addEventListener(
     "click",
     restartGame
+  );
+
+}
+
+
+/* Apply Flexbox properties */
+
+function applyFlexProperties(element, values) {
+
+  element.style.flexDirection =
+    values["sel-flex-direction"];
+
+  element.style.justifyContent =
+    values["sel-justify-content"];
+
+  element.style.alignItems =
+    values["sel-align-items"];
+
+  element.style.flexWrap =
+    values["sel-flex-wrap"];
+
+}
+
+
+/* Apply player's current selections */
+
+function applyPlayerCSS() {
+
+  const values = {
+
+    "sel-flex-direction":
+      document.getElementById(
+        "sel-flex-direction"
+      ).value,
+
+    "sel-justify-content":
+      document.getElementById(
+        "sel-justify-content"
+      ).value,
+
+    "sel-align-items":
+      document.getElementById(
+        "sel-align-items"
+      ).value,
+
+    "sel-flex-wrap":
+      document.getElementById(
+        "sel-flex-wrap"
+      ).value
+
+  };
+
+
+  applyFlexProperties(
+    flexContainer,
+    values
+  );
+
+}
+
+
+/* Apply expected solution to target */
+
+function applyTargetCSS() {
+
+  const expected =
+    steps[currentStep].expected;
+
+
+  applyFlexProperties(
+    targetContainer,
+    expected
   );
 
 }
@@ -249,10 +330,9 @@ function loadStep(index) {
 
   currentStep = index;
 
-  const step = steps[index];
+  const step =
+    steps[currentStep];
 
-  stepNum.textContent =
-    index + 1;
 
   goalTitle.textContent =
     step.title;
@@ -260,16 +340,29 @@ function loadStep(index) {
   goalText.textContent =
     step.goal;
 
+  stepNum.textContent =
+    currentStep + 1;
+
 
   selectIds.forEach(id => {
 
     document.getElementById(id).value =
-      stepSelections[index][id];
+      stepSelections[currentStep][id];
 
   });
 
 
+  /*
+   * The target uses the exact same Flexbox
+   * structure as the player's container.
+   * The only difference is that it contains
+   * the bread instead of the hotdog.
+   */
+
+  applyTargetCSS();
+
   applyPlayerCSS();
+
 
   clearFeedback();
 
@@ -284,34 +377,7 @@ function loadStep(index) {
 }
 
 
-/* Apply selected Flexbox properties */
-
-function applyPlayerCSS() {
-
-  flexContainer.style.flexDirection =
-    document.getElementById(
-      "sel-flex-direction"
-    ).value;
-
-  flexContainer.style.justifyContent =
-    document.getElementById(
-      "sel-justify-content"
-    ).value;
-
-  flexContainer.style.alignItems =
-    document.getElementById(
-      "sel-align-items"
-    ).value;
-
-  flexContainer.style.flexWrap =
-    document.getElementById(
-      "sel-flex-wrap"
-    ).value;
-
-}
-
-
-/* Handle select changes */
+/* Select changed */
 
 function onSelectChange() {
 
@@ -342,26 +408,10 @@ function checkSolution() {
   updateAttempts();
 
 
-  const expected =
-    steps[currentStep].expected;
-
-
-  let correct = true;
-
-
   selectIds.forEach(id => {
 
-    const selected =
-      document.getElementById(id).value;
-
-    if (selected !== expected[id]) {
-
-      correct = false;
-
-    }
-
     stepSelections[currentStep][id] =
-      selected;
+      document.getElementById(id).value;
 
   });
 
@@ -369,19 +419,10 @@ function checkSolution() {
   applyPlayerCSS();
 
 
-  if (!correct) {
-
-    showError();
-
-    return;
-
-  }
-
-
   /*
-   * The selected Flexbox values are correct.
-   * We also check that the actual hotdog image
-   * reached the bread target.
+   * Compare the actual position of the
+   * hotdog with the actual position of
+   * the bread target.
    */
 
   const hotdog =
@@ -406,6 +447,7 @@ function checkSolution() {
     hotdogRect.top +
     hotdogRect.height / 2;
 
+
   const breadCenterX =
     breadRect.left +
     breadRect.width / 2;
@@ -428,7 +470,16 @@ function checkSolution() {
     );
 
 
-  if (distance < 18) {
+  /*
+   * If both containers have the same
+   * Flexbox layout, their items should
+   * occupy the same position.
+   */
+
+  const tolerance = 5;
+
+
+  if (distance <= tolerance) {
 
     completeStep();
 
@@ -445,7 +496,9 @@ function checkSolution() {
 
 function completeStep() {
 
-  stepCompleted[currentStep] = true;
+  stepCompleted[currentStep] =
+    true;
+
 
   feedback.textContent =
     "✅ מעולה! הנקניקייה על הלחמנייה!";
@@ -454,28 +507,34 @@ function completeStep() {
     "feedback success";
 
 
-  arena.classList.remove("wrong");
+  arena.classList.remove(
+    "wrong"
+  );
 
-  arena.classList.add("correct");
+  arena.classList.add(
+    "correct"
+  );
 
 
   updateButtons();
 
-  updateDots();
-
   updateProgress();
+
+  updateDots();
 
 
   setTimeout(() => {
 
-    arena.classList.remove("correct");
+    arena.classList.remove(
+      "correct"
+    );
 
   }, 700);
 
 }
 
 
-/* Incorrect solution */
+/* Wrong answer */
 
 function showError() {
 
@@ -486,26 +545,35 @@ function showError() {
     "feedback error";
 
 
-  arena.classList.remove("correct");
+  arena.classList.remove(
+    "correct"
+  );
 
-  arena.classList.remove("wrong");
+  arena.classList.remove(
+    "wrong"
+  );
 
 
   void arena.offsetWidth;
 
-  arena.classList.add("wrong");
+
+  arena.classList.add(
+    "wrong"
+  );
 
 
   setTimeout(() => {
 
-    arena.classList.remove("wrong");
+    arena.classList.remove(
+      "wrong"
+    );
 
   }, 400);
 
 }
 
 
-/* Reset current step */
+/* Reset */
 
 function resetStep() {
 
@@ -520,15 +588,23 @@ function resetStep() {
   });
 
 
-  stepCompleted[currentStep] = false;
+  stepCompleted[currentStep] =
+    false;
+
 
   applyPlayerCSS();
 
   clearFeedback();
 
-  arena.classList.remove("correct");
 
-  arena.classList.remove("wrong");
+  arena.classList.remove(
+    "correct"
+  );
+
+  arena.classList.remove(
+    "wrong"
+  );
+
 
   updateButtons();
 
@@ -543,7 +619,8 @@ function resetStep() {
 
 function clearFeedback() {
 
-  feedback.textContent = "";
+  feedback.textContent =
+    "";
 
   feedback.className =
     "feedback";
@@ -567,6 +644,7 @@ function updateButtons() {
 
   prevButton.disabled =
     currentStep === 0;
+
 
   nextButton.disabled =
     !stepCompleted[currentStep];
@@ -604,10 +682,14 @@ function updateButtons() {
 function updateProgress() {
 
   const completed =
-    stepCompleted.filter(Boolean).length;
+    stepCompleted.filter(
+      Boolean
+    ).length;
+
 
   const progress =
     (completed / steps.length) * 100;
+
 
   progressFill.style.width =
     `${progress}%`;
@@ -615,11 +697,13 @@ function updateProgress() {
 }
 
 
-/* Next step */
+/* Next */
 
 function nextStep() {
 
-  if (!stepCompleted[currentStep]) {
+  if (
+    !stepCompleted[currentStep]
+  ) {
 
     return;
 
@@ -645,7 +729,7 @@ function nextStep() {
 }
 
 
-/* Previous step */
+/* Previous */
 
 function prevStep() {
 
@@ -663,7 +747,7 @@ function prevStep() {
 }
 
 
-/* Progress dots */
+/* Dots */
 
 function renderDots() {
 
@@ -717,11 +801,14 @@ function updateDots() {
         `dot-${index}`
       );
 
+
     dot.className =
       "dot";
 
 
-    if (stepCompleted[index]) {
+    if (
+      stepCompleted[index]
+    ) {
 
       dot.classList.add(
         "completed"
@@ -730,7 +817,9 @@ function updateDots() {
     }
 
 
-    if (index === currentStep) {
+    if (
+      index === currentStep
+    ) {
 
       dot.classList.add(
         "current"
@@ -775,6 +864,7 @@ function finishGame() {
 function restartGame() {
 
   currentStep = 0;
+
 
   stepCompleted.fill(false);
 

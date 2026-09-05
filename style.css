@@ -281,9 +281,6 @@ main {
   font-size: 1.15rem;
 
   letter-spacing: 3px;
-
-  text-shadow:
-    1px 2px 0 rgba(80, 30, 20, 0.25);
 }
 
 .stall-sign span {
@@ -361,56 +358,57 @@ main {
   border-top: 3px solid var(--brown);
 
   z-index: 8;
+
+  pointer-events: none;
 }
 
 
-/* Target */
+/* Both containers use the same Flexbox area */
 
-.target-layer {
+.flex-layer {
   position: absolute;
 
   inset: 0;
 
+  display: flex;
+
+  padding: 35px 18px 28px;
+}
+
+
+/* Target is behind the player */
+
+.target-layer {
   z-index: 1;
 
   pointer-events: none;
 }
 
-.target-label {
-  position: absolute;
 
-  top: 12px;
-  right: 14px;
+/* Player is above the target */
 
-  padding: 5px 9px;
+.player-layer {
+  z-index: 4;
 
-  color: var(--brown);
-
-  background: rgba(255,255,255,0.8);
-
-  border: 1px dashed var(--brown-light);
-
-  border-radius: 6px;
-
-  font-size: 0.7rem;
-  font-weight: bold;
+  pointer-events: none;
 }
 
-.target-bun {
-  position: absolute;
 
+/* Target */
+
+.target-bun,
+.hotdog-item {
   width: 92px;
   height: 92px;
 
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
+.target-bun {
   border: 3px dashed rgba(113, 59, 36, 0.55);
 
   border-radius: 20px;
@@ -426,49 +424,16 @@ main {
 
   object-fit: contain;
 
-  opacity: 0.58;
-
-  filter:
-    drop-shadow(
-      0 3px 3px rgba(80, 40, 20, 0.15)
-    );
+  opacity: 0.55;
 }
 
 
-/* Player Flex Container */
-
-.flex-layer {
-  position: absolute;
-
-  inset: 0;
-
-  display: flex;
-
-  padding: 35px 18px 28px;
-}
-
-#flex-container {
-  z-index: 4;
-
-  pointer-events: none;
-}
-
-
-/* Hotdog */
+/* Player hotdog */
 
 .hotdog-item {
-  width: 92px;
-  height: 92px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 20px;
 
   overflow: hidden;
-
-  border-radius: 20px;
 
   transition:
     transform 0.25s ease,
@@ -485,6 +450,33 @@ main {
     drop-shadow(
       0 4px 4px rgba(80, 40, 20, 0.2)
     );
+}
+
+
+/* Target label */
+
+.target-label {
+  position: absolute;
+
+  top: 12px;
+  right: 14px;
+
+  z-index: 6;
+
+  padding: 5px 9px;
+
+  color: var(--brown);
+
+  background: rgba(255,255,255,0.85);
+
+  border: 1px dashed var(--brown-light);
+
+  border-radius: 6px;
+
+  font-size: 0.7rem;
+  font-weight: bold;
+
+  pointer-events: none;
 }
 
 
@@ -1049,6 +1041,20 @@ footer {
     padding: 8px 10px;
 
     font-size: 0.8rem;
+  }
+
+  .dots {
+    gap: 4px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dot.current {
+    width: 11px;
+    height: 11px;
   }
 
 }

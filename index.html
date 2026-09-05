@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hot Dog Flex</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -23,16 +23,22 @@
       </div>
 
       <div class="progress-area">
+
         <div class="progress-info">
           <span>התקדמות</span>
+
           <strong>
             שלב <span id="step-num">1</span> מתוך 8
           </strong>
         </div>
 
         <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
+          <div
+            class="progress-fill"
+            id="progress-fill"
+          ></div>
         </div>
+
       </div>
 
     </header>
@@ -54,7 +60,10 @@
           </div>
 
           <div>
-            <h2 id="goal-title">הזמנה מספר 1</h2>
+            <h2 id="goal-title">
+              הזמנה מספר 1
+            </h2>
+
             <p id="goal-text"></p>
           </div>
 
@@ -71,44 +80,53 @@
           <span>★</span>
         </div>
 
+
         <div class="counter">
 
           <div class="board-label">
             🍽️ הרכבת ההזמנה
           </div>
 
-          <div class="arena-wrapper" id="arena-wrapper">
 
-            <!-- Target -->
-            <div class="target-layer" id="target-layer">
+          <div
+            class="arena-wrapper"
+            id="arena-wrapper"
+          >
 
-              <div class="target-label">
-                היעד
-              </div>
+            <!-- Target container -->
+            <div
+              class="flex-layer target-layer"
+              id="target-container"
+            >
 
               <div class="target-bun">
                 <img
-                  src="images/bread.jpeg"
+                  src="images/bread.png"
                   alt="לחמנייה"
-                />
+                >
               </div>
 
             </div>
 
 
-            <!-- Player Flex Container -->
+            <!-- Player container -->
             <div
-              class="flex-layer"
+              class="flex-layer player-layer"
               id="flex-container"
             >
 
               <div class="hotdog-item">
                 <img
-                  src="images/hotdog.jpeg"
+                  src="images/hotdog.png"
                   alt="נקניקייה"
-                />
+                >
               </div>
 
+            </div>
+
+
+            <div class="target-label">
+              היעד
             </div>
 
           </div>
@@ -127,8 +145,11 @@
               FLEXBOX CONTROLS
             </span>
 
-            <h2>🛠️ הרכב את ההזמנה</h2>
+            <h2>
+              🛠️ הרכב את ההזמנה
+            </h2>
           </div>
+
 
           <div class="attempts-box">
             <span>ניסיונות</span>
@@ -147,10 +168,23 @@
             </label>
 
             <select id="sel-flex-direction">
-              <option value="row">row</option>
-              <option value="row-reverse">row-reverse</option>
-              <option value="column">column</option>
-              <option value="column-reverse">column-reverse</option>
+
+              <option value="row">
+                row
+              </option>
+
+              <option value="row-reverse">
+                row-reverse
+              </option>
+
+              <option value="column">
+                column
+              </option>
+
+              <option value="column-reverse">
+                column-reverse
+              </option>
+
             </select>
 
           </div>
@@ -163,12 +197,31 @@
             </label>
 
             <select id="sel-justify-content">
-              <option value="flex-start">flex-start</option>
-              <option value="flex-end">flex-end</option>
-              <option value="center">center</option>
-              <option value="space-between">space-between</option>
-              <option value="space-around">space-around</option>
-              <option value="space-evenly">space-evenly</option>
+
+              <option value="flex-start">
+                flex-start
+              </option>
+
+              <option value="flex-end">
+                flex-end
+              </option>
+
+              <option value="center">
+                center
+              </option>
+
+              <option value="space-between">
+                space-between
+              </option>
+
+              <option value="space-around">
+                space-around
+              </option>
+
+              <option value="space-evenly">
+                space-evenly
+              </option>
+
             </select>
 
           </div>
@@ -181,11 +234,27 @@
             </label>
 
             <select id="sel-align-items">
-              <option value="flex-start">flex-start</option>
-              <option value="flex-end">flex-end</option>
-              <option value="center">center</option>
-              <option value="stretch">stretch</option>
-              <option value="baseline">baseline</option>
+
+              <option value="flex-start">
+                flex-start
+              </option>
+
+              <option value="flex-end">
+                flex-end
+              </option>
+
+              <option value="center">
+                center
+              </option>
+
+              <option value="stretch">
+                stretch
+              </option>
+
+              <option value="baseline">
+                baseline
+              </option>
+
             </select>
 
           </div>
@@ -198,9 +267,19 @@
             </label>
 
             <select id="sel-flex-wrap">
-              <option value="nowrap">nowrap</option>
-              <option value="wrap">wrap</option>
-              <option value="wrap-reverse">wrap-reverse</option>
+
+              <option value="nowrap">
+                nowrap
+              </option>
+
+              <option value="wrap">
+                wrap
+              </option>
+
+              <option value="wrap-reverse">
+                wrap-reverse
+              </option>
+
             </select>
 
           </div>
@@ -247,10 +326,12 @@
         → אחורה
       </button>
 
+
       <div
         class="dots"
         id="dots"
       ></div>
+
 
       <button
         class="nav-button next"
@@ -281,16 +362,23 @@
       </span>
 
       <h2>
-        הדוכן סיים את כל ההזמנות!
+        כל הכבוד!
       </h2>
 
       <p>
-        כל הכבוד! השלמת את כל שלבי משחק ה־Flexbox.
+        השלמת את כל שלבי משחק ה־Flexbox.
       </p>
 
       <div class="final-score">
-        <span>סה״כ ניסיונות</span>
-        <strong id="final-attempts">0</strong>
+
+        <span>
+          סה״כ ניסיונות
+        </span>
+
+        <strong id="final-attempts">
+          0
+        </strong>
+
       </div>
 
       <button id="restart-btn">
