@@ -112,7 +112,7 @@ function loadStep(index) {
   const pct = (index / steps.length) * 100;
   document.getElementById('progress-fill').style.width = pct + '%';
 
-  document.body.style.background = stepBg[index].page;
+  document.body.style.backgroundColor = stepBg[index].page;
   document.getElementById('arena-wrapper').style.background = stepBg[index].arena;
 
   applyExpectedToTarget(index);

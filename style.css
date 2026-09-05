@@ -6,11 +6,22 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #1a1a2e;
+  background-color: #7b1a00;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 10px,
+      transparent 10px, transparent 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,220,0,0.04) 0px, rgba(255,220,0,0.04) 10px,
+      transparent 10px, transparent 20px
+    );
   color: #eee;
   min-height: 100vh;
   direction: rtl;
-  transition: background 0.5s ease;
+  transition: background-color 0.5s ease;
 }
 
 /* ─── App Shell ─── */
@@ -184,13 +195,45 @@ section h2 {
 .hidden { display: none !important; }
 
 /* ─── Preview ─── */
+.preview-section {
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #c0392b;
+  background: transparent;
+}
+
+.preview-section::before {
+  content: '🌭 דוכן הנקניקיות 🌭';
+  display: block;
+  text-align: center;
+  background: repeating-linear-gradient(
+    90deg,
+    #c0392b 0px, #c0392b 20px,
+    #f7dc6f 20px, #f7dc6f 40px
+  );
+  color: #1a1a2e;
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 0;
+  letter-spacing: 2px;
+}
+
 .arena-wrapper {
   position: relative;
   height: 300px;
-  border: 2px dashed #3a5a8a;
-  border-radius: 10px;
   overflow: hidden;
   transition: background 0.5s ease;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0) 0px, rgba(0,0,0,0) 38px,
+      rgba(0,0,0,0.25) 38px, rgba(0,0,0,0.25) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0) 0px, rgba(0,0,0,0) 38px,
+      rgba(0,0,0,0.25) 38px, rgba(0,0,0,0.25) 40px
+    );
 }
 
 .flex-layer {
@@ -219,8 +262,8 @@ section h2 {
 }
 
 #bun-img {
-  opacity: 0.4;
-  filter: drop-shadow(0 0 8px #ffd200);
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #f7dc6f);
 }
 
 /* ─── Footer ─── */
