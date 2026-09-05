@@ -10,6 +10,7 @@ body {
   color: #eee;
   min-height: 100vh;
   direction: rtl;
+  transition: background 0.5s ease;
 }
 
 /* ─── App Shell ─── */
@@ -85,36 +86,6 @@ section h2 {
   margin-bottom: 12px;
 }
 
-.hint-btn {
-  background: #2d2d4e;
-  color: #ffd200;
-  border: 1px solid #ffd200;
-  border-radius: 8px;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background 0.2s;
-}
-
-.hint-btn:hover {
-  background: #3a3a5e;
-}
-
-.hint-box {
-  margin-top: 10px;
-  background: #0f3460;
-  border-radius: 8px;
-  padding: 12px 16px;
-  border-right: 4px solid #ffd200;
-}
-
-.hint-box code {
-  font-family: 'Consolas', monospace;
-  font-size: 0.95rem;
-  color: #7efff5;
-  white-space: pre;
-}
-
 .hidden {
   display: none !important;
 }
@@ -169,31 +140,51 @@ section h2 {
   margin-top: 14px;
 }
 
-#reset-btn {
+#check-btn, #reset-btn {
   padding: 8px 20px;
   border-radius: 8px;
-  border: 1px solid #444;
+  border: none;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: bold;
-  background: #2d2d4e;
-  color: #aaa;
   transition: opacity 0.2s;
 }
 
-#reset-btn:hover {
+#check-btn {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #1a1a2e;
+}
+
+#reset-btn {
+  background: #2d2d4e;
+  color: #aaa;
+  border: 1px solid #444;
+}
+
+#check-btn:hover, #reset-btn:hover {
   opacity: 0.85;
 }
 
-.feedback {
+.feedback-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
-  font-size: 0.95rem;
   min-height: 24px;
+}
+
+.feedback {
+  font-size: 0.95rem;
   font-weight: bold;
 }
 
 .feedback.success { color: #2ecc71; }
 .feedback.error   { color: #e74c3c; }
+
+.attempts {
+  font-size: 0.82rem;
+  color: #888;
+}
 
 /* ─── Preview ─── */
 .preview-section {
@@ -202,10 +193,10 @@ section h2 {
 
 .flex-arena {
   display: flex;
-  min-height: 140px;
+  min-height: 260px;
   border: 2px dashed #3a5a8a;
   border-radius: 10px;
-  padding: 12px;
+  padding: 16px;
   background: #0f1e3d;
   transition: all 0.35s ease;
   gap: 10px;

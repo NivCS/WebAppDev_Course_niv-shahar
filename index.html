@@ -24,10 +24,6 @@
       <section class="goal-section">
         <h2>🎯 המשימה</h2>
         <p id="goal-text"></p>
-        <button class="hint-btn" id="hint-btn" onclick="toggleHint()">💡 רמז</button>
-        <div id="hint-box" class="hint-box hidden">
-          <code id="hint-text"></code>
-        </div>
       </section>
 
       <!-- Editor -->
@@ -37,8 +33,7 @@
 
           <div class="select-row">
             <label class="prop-label">flex-direction</label>
-            <select id="sel-flex-direction" onchange="applyCSS()">
-              <option value="">-- בחר --</option>
+            <select id="sel-flex-direction" onchange="onSelectChange()">
               <option value="row">row</option>
               <option value="row-reverse">row-reverse</option>
               <option value="column">column</option>
@@ -48,8 +43,7 @@
 
           <div class="select-row">
             <label class="prop-label">justify-content</label>
-            <select id="sel-justify-content" onchange="applyCSS()">
-              <option value="">-- בחר --</option>
+            <select id="sel-justify-content" onchange="onSelectChange()">
               <option value="flex-start">flex-start</option>
               <option value="flex-end">flex-end</option>
               <option value="center">center</option>
@@ -61,20 +55,18 @@
 
           <div class="select-row">
             <label class="prop-label">align-items</label>
-            <select id="sel-align-items" onchange="applyCSS()">
-              <option value="">-- בחר --</option>
+            <select id="sel-align-items" onchange="onSelectChange()">
+              <option value="stretch">stretch</option>
               <option value="flex-start">flex-start</option>
               <option value="flex-end">flex-end</option>
               <option value="center">center</option>
-              <option value="stretch">stretch</option>
               <option value="baseline">baseline</option>
             </select>
           </div>
 
           <div class="select-row">
             <label class="prop-label">flex-wrap</label>
-            <select id="sel-flex-wrap" onchange="applyCSS()">
-              <option value="">-- בחר --</option>
+            <select id="sel-flex-wrap" onchange="onSelectChange()">
               <option value="nowrap">nowrap</option>
               <option value="wrap">wrap</option>
               <option value="wrap-reverse">wrap-reverse</option>
@@ -83,9 +75,13 @@
 
         </div>
         <div class="editor-actions">
+          <button id="check-btn" onclick="checkSolution()">✔ בדוק פתרון</button>
           <button id="reset-btn" onclick="resetStep()">↺ איפוס</button>
         </div>
-        <div id="feedback" class="feedback"></div>
+        <div class="feedback-row">
+          <div id="feedback" class="feedback"></div>
+          <div id="attempts" class="attempts"></div>
+        </div>
       </section>
 
       <!-- Preview -->
