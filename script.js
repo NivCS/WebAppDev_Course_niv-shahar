@@ -53,16 +53,16 @@ const steps = [
   },
 
   {
-    title: "שתי נקניקיות",
-    instruction: "סדר שתי נקניקיות אחת מעל השנייה, במרכז הדוכן.",
-    items: 2,
-
+    title: "סידור מיוחד",
+    instruction: "סדר שלוש נקניקיות בשורה עם מרווחים שווים, והשתמש ב-wrap-reverse.",
+    items: 3,
     expected: {
-      flexDirection: "column",
-      justifyContent: "center",
+      flexDirection: "row",
+      justifyContent: "space-around",
       alignItems: "center",
-      flexWrap: "nowrap"
-    }
+      flexWrap: "wrap-reverse"
+    },
+    narrowBoard: true
   },
 
   {
