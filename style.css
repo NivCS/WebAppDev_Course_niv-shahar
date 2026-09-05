@@ -457,33 +457,6 @@ main {
 }
 
 
-/* Target label */
-
-.target-label {
-  position: absolute;
-
-  top: 12px;
-  right: 14px;
-
-  z-index: 6;
-
-  padding: 5px 9px;
-
-  color: var(--brown);
-
-  background: rgba(255,255,255,0.85);
-
-  border: 1px dashed var(--brown-light);
-
-  border-radius: 6px;
-
-  font-size: 0.7rem;
-  font-weight: bold;
-
-  pointer-events: none;
-}
-
-
 /* Controls */
 
 .controls-card {
