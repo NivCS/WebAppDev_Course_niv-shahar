@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מטלה 2 - Flexbox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>הדגמת Flexbox אינטראקטיבית</h1>
+
+  <!-- Panel 1 -->
+  <section class="panel">
+    <h2>פאנל 1</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container1','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container1','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container1','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container1','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container1">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+  </section>
+
+  <!-- Panel 2 -->
+  <section class="panel">
+    <h2>פאנל 2</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container2','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container2','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container2','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container2','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container2">
+      <div class="box">A</div>
+      <div class="box">B</div>
+      <div class="box">C</div>
+      <div class="box">D</div>
+    </div>
+  </section>
+
+  <!-- Panel 3 -->
+  <section class="panel">
+    <h2>פאנל 3</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container3','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container3','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container3','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container3','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container3">
+      <div class="box">X</div>
+      <div class="box">Y</div>
+      <div class="box">Z</div>
+    </div>
+  </section>
+
+  <!-- Panel 4 -->
+  <section class="panel">
+    <h2>פאנל 4</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container4','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container4','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container4','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container4','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container4">
+      <div class="box">🐸</div>
+      <div class="box">🌟</div>
+      <div class="box">🎯</div>
+      <div class="box">🚀</div>
+      <div class="box">🎨</div>
+    </div>
+  </section>
+
+  <!-- Panel 5 -->
+  <section class="panel">
+    <h2>פאנל 5</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container5','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container5','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container5','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container5','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container5">
+      <div class="box">אדום</div>
+      <div class="box">כחול</div>
+      <div class="box">ירוק</div>
+    </div>
+  </section>
+
+  <!-- Panel 6 -->
+  <section class="panel">
+    <h2>פאנל 6</h2>
+    <div class="controls">
+      <label>flex-direction:
+        <select onchange="setStyle('container6','flexDirection',this.value)">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </label>
+      <label>justify-content:
+        <select onchange="setStyle('container6','justifyContent',this.value)">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </label>
+      <label>align-items:
+        <select onchange="setStyle('container6','alignItems',this.value)">
+          <option value="stretch">stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+        </select>
+      </label>
+      <label>flex-wrap:
+        <select onchange="setStyle('container6','flexWrap',this.value)">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </label>
+    </div>
+    <div class="flex-container" id="container6">
+      <div class="box">100</div>
+      <div class="box">200</div>
+      <div class="box">300</div>
+      <div class="box">400</div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
