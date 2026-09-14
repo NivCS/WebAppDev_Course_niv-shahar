@@ -1,3 +1,7 @@
+html {
+  min-width: 430px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,7 +23,11 @@
 }
 
 body {
+  min-width: 430px;
+
   min-height: 100vh;
+
+  overflow-x: auto;
 
   font-family: "Segoe UI", Arial, sans-serif;
 
@@ -40,6 +48,8 @@ body {
 }
 
 .app {
+  min-width: 430px;
+
   width: min(900px, calc(100% - 28px));
 
   margin: 0 auto;
@@ -969,69 +979,6 @@ footer {
 
   .brand h1 {
     font-size: 1.25rem;
-  }
-
-  .order-content p {
-    font-size: 0.83rem;
-  }
-
-  .stall-sign {
-    font-size: 0.95rem;
-  }
-
-  .counter {
-    padding: 10px;
-  }
-
-  .arena-wrapper {
-    height: 250px;
-  }
-
-  .flex-layer {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .target-bun,
-  .hotdog-item {
-    width: 75px;
-    height: 75px;
-  }
-
-  .target-bun img {
-    width: 65px;
-    height: 65px;
-  }
-
-  .hotdog-item img {
-    width: 70px;
-    height: 70px;
-  }
-
-  footer {
-    gap: 5px;
-  }
-
-  .nav-button {
-    min-width: 90px;
-
-    padding: 8px 10px;
-
-    font-size: 0.8rem;
-  }
-
-  .dots {
-    gap: 4px;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .dot.current {
-    width: 11px;
-    height: 11px;
   }
 
 }
