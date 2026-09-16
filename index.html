@@ -1,122 +1,419 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>משחק Flexbox</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Niv and Shahar's Hotdog</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header>
-      <h1>🎮 משחק Flexbox</h1>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
+  <!-- Header -->
+
+  <header class="top-header">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        🌭
       </div>
-      <div class="step-label">שלב <span id="step-num">1</span> מתוך 6</div>
-    </header>
 
-    <main>
+      <div>
+        <h1>Niv and Shahar's Hotdog</h1>
+        <p>דוכן הנקניקיות</p>
+      </div>
 
-      <!-- Goal -->
-      <section class="goal-section">
-        <h2>🎯 המשימה</h2>
-        <p id="goal-text"></p>
-      </section>
+    </div>
 
-      <!-- Editor -->
-      <section class="editor-section">
-        <h2>✏️ בחר ערכי CSS</h2>
-        <div class="selects-grid">
 
-          <div class="select-row">
-            <label class="prop-label">flex-direction</label>
-            <select id="sel-flex-direction" onchange="onSelectChange()">
-              <option value="row">row</option>
-              <option value="row-reverse">row-reverse</option>
-              <option value="column">column</option>
-              <option value="column-reverse">column-reverse</option>
-            </select>
+    <div class="progress-area">
+
+      <div class="progress-info">
+
+        <span>התקדמות</span>
+
+        <span>
+          שלב
+          <strong id="step-number">1</strong>
+          מתוך
+          <strong id="total-steps">8</strong>
+        </span>
+
+      </div>
+
+      <div class="progress-bar">
+
+        <div
+          class="progress-fill"
+          id="progress-fill">
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- Order -->
+
+    <section class="order-card">
+
+      <div class="order-title">
+
+        <span class="order-number">
+          ORDER
+        </span>
+
+        <span>
+          ההזמנה שלך
+        </span>
+
+      </div>
+
+
+      <div class="order-content">
+
+        <div class="order-icon">
+          🌭
+        </div>
+
+        <div>
+
+          <h2 id="step-title"></h2>
+
+          <p id="step-instruction"></p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Game -->
+
+    <section class="game-card">
+
+      <div class="stall-sign">
+
+        <span>★</span>
+
+        HOTDOG STAND
+
+        <span>★</span>
+
+      </div>
+
+
+      <div class="counter">
+
+        <div class="board-label">
+          🌭 סידור ההזמנה
+        </div>
+
+
+        <div
+          class="arena-wrapper"
+          id="arena">
+
+          <!-- Target -->
+
+          <div
+            class="flex-layer target-layer"
+            id="target-container">
           </div>
 
-          <div class="select-row">
-            <label class="prop-label">justify-content</label>
-            <select id="sel-justify-content" onchange="onSelectChange()">
-              <option value="flex-start">flex-start</option>
-              <option value="flex-end">flex-end</option>
-              <option value="center">center</option>
-              <option value="space-between">space-between</option>
-              <option value="space-around">space-around</option>
-              <option value="space-evenly">space-evenly</option>
-            </select>
-          </div>
 
-          <div class="select-row">
-            <label class="prop-label">align-items</label>
-            <select id="sel-align-items" onchange="onSelectChange()">
-              <option value="flex-start">flex-start</option>
-              <option value="flex-end">flex-end</option>
-              <option value="center">center</option>
-              <option value="stretch">stretch</option>
-              <option value="baseline">baseline</option>
-            </select>
-          </div>
+          <!-- Player -->
 
-          <div class="select-row">
-            <label class="prop-label">flex-wrap</label>
-            <select id="sel-flex-wrap" onchange="onSelectChange()">
-              <option value="nowrap">nowrap</option>
-              <option value="wrap">wrap</option>
-              <option value="wrap-reverse">wrap-reverse</option>
-            </select>
+          <div
+            class="flex-layer player-layer"
+            id="flex-container">
           </div>
 
         </div>
-        <div class="editor-actions">
-          <button id="check-btn" onclick="checkSolution()">✔ בדוק פתרון</button>
-          <button id="reset-btn" onclick="resetStep()">↺ איפוס</button>
-        </div>
-        <div class="feedback-row">
-          <div id="feedback" class="feedback"></div>
-          <div id="attempts" class="attempts"></div>
-        </div>
-      </section>
 
-      <!-- Preview -->
-      <section class="preview-section">
-        <div class="arena-wrapper" id="arena-wrapper">
-          <!-- Bun: ghost target, always at correct position -->
-          <div class="flex-layer" id="flex-target" dir="ltr">
-            <img src="images/bun.jpeg" id="bun-img" class="arena-img" />
-          </div>
-          <!-- Hotdog: moves with user CSS -->
-          <div class="flex-layer" id="flex-container" dir="ltr">
-            <img src="images/hotdog.jpeg" id="hotdog-img" class="arena-img" />
-          </div>
-        </div>
-      </section>
+      </div>
 
-    </main>
+    </section>
+
+
+    <!-- Controls -->
+
+    <section class="controls-card">
+
+      <div class="controls-header">
+
+        <div>
+
+          <div class="small-label">
+            FLEXBOX CONTROLS
+          </div>
+
+          <h2>
+            סדר את הנקניקיות
+          </h2>
+
+        </div>
+
+
+        <div class="attempts-box">
+
+          <span>ניסיונות</span>
+
+          <strong id="attempts">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="controls-grid">
+
+        <div class="control">
+
+          <label for="flex-direction">
+            flex-direction
+          </label>
+
+          <select id="flex-direction">
+
+            <option value="row">
+              row
+            </option>
+
+            <option value="row-reverse">
+              row-reverse
+            </option>
+
+            <option value="column">
+              column
+            </option>
+
+            <option value="column-reverse">
+              column-reverse
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="control">
+
+          <label for="justify-content">
+            justify-content
+          </label>
+
+          <select id="justify-content">
+
+            <option value="flex-start">
+              flex-start
+            </option>
+
+            <option value="center">
+              center
+            </option>
+
+            <option value="flex-end">
+              flex-end
+            </option>
+
+            <option value="space-between">
+              space-between
+            </option>
+
+            <option value="space-around">
+              space-around
+            </option>
+
+            <option value="space-evenly">
+              space-evenly
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="control">
+
+          <label for="align-items">
+            align-items
+          </label>
+
+          <select id="align-items">
+
+            <option value="flex-start">
+              flex-start
+            </option>
+
+            <option value="center">
+              center
+            </option>
+
+            <option value="flex-end">
+              flex-end
+            </option>
+
+            <option value="stretch">
+              stretch
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="control">
+
+          <label for="flex-wrap">
+            flex-wrap
+          </label>
+
+          <select id="flex-wrap">
+
+            <option value="nowrap">
+              nowrap
+            </option>
+
+            <option value="wrap">
+              wrap
+            </option>
+
+            <option value="wrap-reverse">
+              wrap-reverse
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="reset-button"
+          id="reset-button">
+
+          ↻ איפוס
+
+        </button>
+
+
+        <button
+          class="check-button"
+          id="check-button">
+
+          בדוק פתרון ✓
+
+        </button>
+
+      </div>
+
+
+      <div
+        class="feedback"
+        id="feedback">
+      </div>
+
+    </section>
+
+
+    <!-- Footer -->
 
     <footer>
-      <button id="prev-btn" onclick="prevStep()">→ אחורה</button>
-      <div class="dots" id="dots"></div>
-      <button id="next-btn" onclick="nextStep()" disabled>קדימה ←</button>
+
+      <button
+        class="nav-button"
+        id="prev-button">
+
+        → שלב קודם
+
+      </button>
+
+
+      <div
+        class="dots"
+        id="step-dots">
+      </div>
+
+
+      <button
+        class="nav-button next"
+        id="next-button">
+
+        שלב הבא ←
+
+      </button>
+
     </footer>
 
-  </div>
+  </main>
 
-  <div class="overlay hidden" id="success-overlay">
-    <div class="overlay-box">
-      <div class="overlay-emoji">🎉</div>
-      <h2>כל הכבוד!</h2>
-      <p>סיימת את כל 6 השלבים!</p>
-      <button onclick="restartGame()">שחק שוב</button>
+</div>
+
+
+<!-- Victory overlay -->
+
+<div
+  class="overlay hidden"
+  id="success-overlay">
+
+  <div class="success-box">
+
+    <div class="success-icon">
+      🏆
     </div>
+
+    <div class="success-label">
+      HOTDOG MASTER
+    </div>
+
+    <h2 id="success-title">
+      כל הכבוד!
+    </h2>
+
+    <p id="success-message">
+      פתרת את כל שלבי המשחק.
+    </p>
+
+
+    <div class="final-score">
+
+      <span>
+        ניסיונות:
+      </span>
+
+      <strong id="final-attempts">
+        0
+      </strong>
+
+    </div>
+
+
+    <button id="restart-button">
+      שחק שוב 🌭
+    </button>
+
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
